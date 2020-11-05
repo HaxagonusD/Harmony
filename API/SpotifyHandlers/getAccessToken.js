@@ -1,4 +1,5 @@
 require("dotenv").config();
+const axios = require("axios");
 const SpotifyWebApi = require("spotify-web-api-node");
 const spotifyApi = new SpotifyWebApi({
   clientId: process.env.SPOTIFY_CLIENT_ID,
@@ -7,7 +8,7 @@ const spotifyApi = new SpotifyWebApi({
 });
 const clientUrl = process.env.CLIENT_URL;
 
-const axios = require("axios");
+
 
 module.exports = function (req, res, next) {
   const { code } = req.query;

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 const CurrentTrack = () => {
   const [currentTrack, setCurrentTrack] = useState(undefined);
   const urlParams = new URLSearchParams(window.location.search);
+  //TODO can you do this without state? Why is it refreshing when useState only happens once?
   const [isUserAuthorized, setIsUserAuthorized] = useState(
     urlParams.has("authorized") ? true : false
   );
@@ -19,11 +20,14 @@ const CurrentTrack = () => {
   return (
     <div className="CurrentTrack">
       {isUserAuthorized ? (
-        ""
+        <div>
+          {" "}
+          You are listening
+          <h1>{currentTrack}</h1>
+        </div>
       ) : (
         <a href="http://localhost:5000/login">Connect your Spotify account</a>
       )}
-      You are listening to <h1>{currentTrack}</h1>
     </div>
   );
 };

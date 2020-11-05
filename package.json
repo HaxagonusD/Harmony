@@ -22,10 +22,9 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "nedb": "^1.8.0",
+    "mongoose": "^5.10.12",
     "node-cron": "^2.0.3",
     "pusher": "^4.0.0",
-    "random-string": "^0.2.0",
     "randomstring": "^1.1.5",
     "spotify-web-api-node": "^5.0.0"
   }
