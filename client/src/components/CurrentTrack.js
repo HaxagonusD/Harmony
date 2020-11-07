@@ -7,19 +7,19 @@ const CurrentTrack = () => {
   const [isUserAuthorized, setIsUserAuthorized] = useState(
     urlParams.has("authorized") ? true : false
   );
-  useEffect(() => {
-    if (isUserAuthorized) {
-      axios
-        .get("http://localhost:5000/history")
-        .then((data) => {
-          setCurrentTrack(data.data);
-        })
-        .catch((error) => console.error(error));
-    }
-  }, [isUserAuthorized]);
+  // useEffect(() => {
+  //   if (isUserAuthorized) {
+  //     axios
+  //       .get("http://localhost:5000//api/spotify/currenttrack")
+  //       .then((data) => {
+  //         setCurrentTrack(data.data);
+  //       })
+  //       .catch((error) => console.error(error));
+  //   }
+  // }, [isUserAuthorized]);
   return (
     <div className="CurrentTrack">
-      {isUserAuthorized ? (
+      {/* {isUserAuthorized ? (
         <div>
           {" "}
           You are listening
@@ -27,7 +27,13 @@ const CurrentTrack = () => {
         </div>
       ) : (
         <a href="http://localhost:5000/login">Connect your Spotify account</a>
-      )}
+      )} */}
+      <a href="http://localhost:5000/auth/spotify/logout">Logout of Spotify</a>
+      <div>
+       
+        You are listening
+        <h1>{currentTrack}</h1>
+      </div>
     </div>
   );
 };

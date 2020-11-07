@@ -1,9 +1,12 @@
 const mongoose = require("mongoose")
 const { Schema } = mongoose;
 
-modeule.export = User = new Schema({
-    display_name: String,
-    email: String,
+module.export = User = new Schema({
+    displayName: String,
     id: String,
-    spotify_profile_url: String,
+    profileUrl: String,
+    provider: String ,
+    spotifyAccessToken: String,
+    spotifyRefreshToken: String,
+    expiresIn: String,
 })
