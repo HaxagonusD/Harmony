@@ -1,0 +1,50 @@
+@import "../Constants/Constants.scss";
+
+.Config {
+  box-sizing: border-box;
+  display: flex;
+  background-color: rgb(251, 251, 251);
+  height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  @include fontNotoSansJP;
+  .logoutButton {
+    a {
+      text-decoration: none;
+      color: white;
+      position: fixed;
+      right: 3em;
+      top: 1em;
+      background-color: $spotifyGreen;
+      padding: 1em 1.5em;
+      border-radius: 0.5em;
+      &:hover {
+        background-color: #25a351;
+      }
+    }
+  }
+  .CurrentNumbers {
+    padding-top: 3em;
+    font-size: 3em;
+  }
+  .AddNumber {
+    padding-top: 3em;
+
+    input {
+      padding: 0.5em;
+      font-size: 1em;
+      border: none;
+      &:hover{
+          border: 1px solid $spotifyGreen;
+      }
+    }
+    button {
+        color: white;
+        background-color: $spotifyGreen;
+        border: none;
+        border-radius: .5em;
+        padding: 1em;
+        margin-left: 1em;
+    }
+  }
+}

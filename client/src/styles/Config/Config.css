@@ -1,0 +1,65 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700&family=Playfair+Display:wght@600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100&display=swap");
+.Config {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: #fbfbfb;
+  height: 100vh;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+.Config .logoutButton a {
+  text-decoration: none;
+  color: white;
+  position: fixed;
+  right: 3em;
+  top: 1em;
+  background-color: #1db954;
+  padding: 1em 1.5em;
+  border-radius: 0.5em;
+}
+
+.Config .logoutButton a:hover {
+  background-color: #25a351;
+}
+
+.Config .CurrentNumbers {
+  padding-top: 3em;
+  font-size: 3em;
+}
+
+.Config .AddNumber {
+  padding-top: 3em;
+}
+
+.Config .AddNumber input {
+  padding: 0.5em;
+  font-size: 1em;
+  border: none;
+}
+
+.Config .AddNumber input:hover {
+  border: 1px solid #1db954;
+}
+
+.Config .AddNumber button {
+  color: white;
+  background-color: #1db954;
+  border: none;
+  border-radius: .5em;
+  padding: 1em;
+  margin-left: 1em;
+}
+/*# sourceMappingURL=Config.css.map */

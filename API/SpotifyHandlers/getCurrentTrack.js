@@ -33,7 +33,7 @@ module.exports = function (req, res, next) {
               // data.body.item !== undefined
               //   ?
               //   : ;
-              if (data.body.item !== undefined) {
+              if (data.body.item !== null && data.body.item !== undefined) {
                 data.body.item.loggedIn = true;
                 res.json(data.body.item);
               } else {

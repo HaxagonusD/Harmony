@@ -9,7 +9,7 @@ const Login = () => {
         Listening to <div className="green">Spotify?</div> Spam your friends.
       </div>
       <div className="description">
-        Send messages to you any phone number using this application
+        Send the song you are currently playing on spotify to any phone number
       </div>
       <a className="loginLink" href="http://localhost:5000/auth/spotify">
         Log in with spotify

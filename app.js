@@ -76,11 +76,10 @@ const pusher = new Pusher({
 });
 console.log("cannot be stopped");
 
-setInterval(async () => {
-  await pusher
-    .trigger("my-channel", "my-event", { message: "Stop" })
+setInterval(() => {
+  pusher
+    .trigger("my-channel", "my-event", {})
     .catch((error) => console.log(error));
-  
 }, 2000);
 
 //connecting to database

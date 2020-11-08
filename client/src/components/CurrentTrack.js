@@ -1,8 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Redirect } from "react-router-dom";
+// import { Redirect } from "react-router-dom";
 import "../styles/CurrentTrack/CurrentTrack.css";
 import Pusher from "pusher-js";
+import Config from './Config'
 const CurrentTrack = () => {
   const [currentTrack, setCurrentTrack] = useState({ loggedIn: true });
   // const urlParams = new URLSearchParams(window.location.search);
@@ -10,7 +11,7 @@ const CurrentTrack = () => {
   // const [isUserAuthorized, setIsUserAuthorized] = useState(
   //   urlParams.has("authorized") ? true : false
   // );
-  const getCurrentTrack= async ()=>{
+  const getCurrentTrack = async () => {
     const instance = axios.create({
       withCredentials: true,
     });
@@ -23,20 +24,28 @@ const CurrentTrack = () => {
         setCurrentTrack(data.data);
       })
       .catch((error) => console.error(error));
-  }
-  Pusher.logToConsole = true;
+  };
 
-  const pusher = new Pusher("5971b97df17e11f9f985", {
-    cluster: "mt1",
-  });
+  useEffect(() => {
+    let mounted = true;
+    if (mounted) {
+      Pusher.logToConsole = true;
 
-  const channel = pusher.subscribe("my-channel");
-  channel.bind("my-event", function () {
-    getCurrentTrack()
-  });
+      const pusher = new Pusher("5971b97df17e11f9f985", {
+        cluster: "mt1",
+      });
 
+      const channel = pusher.subscribe("my-channel");
+      channel.bind("my-event", async function (data) {
+        getCurrentTrack();
+      });
+    }
+    return () => {
+      mounted = false 
+      
+    };
+  }, []);
 
-  
   return (
     <div className="CurrentTrack">
       {/* {isUserAuthorized ? (
@@ -77,18 +86,9 @@ const CurrentTrack = () => {
           )}
         </h1>
       </div>
-      <div className="logout">
-        {currentTrack.loggedIn ? (
-          <div className="name">Hello</div>
-        ) : (
-          <Redirect to="/"></Redirect>
-        )}
-        <a href="http://localhost:5000/auth/spotify/logout">
-          Logout of Spotify
-        </a>
-      </div>
+      
+     <Config  loggedIn={currentTrack.loggedIn}/>
 
-      {/* <a href="http://localhost:5000/api/spotify/currenttrack">Do it again</a> */}
     </div>
   );
 };

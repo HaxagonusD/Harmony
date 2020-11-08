@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700&family=Playfair+Display:wght@600&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100&display=swap");
 .login {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -35,7 +36,7 @@
 
 .login .description {
   font-family: 'Noto Sans JP', sans-serif;
-  font-weight: 400;
+  font-weight: 100;
   font-size: 1.5em;
 }
 

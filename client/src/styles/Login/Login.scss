@@ -1,4 +1,4 @@
-@import "../Constants//Constants.scss";
+@import "../Constants/Constants.scss";
 
 .login {
   box-sizing: border-box;
@@ -21,7 +21,7 @@
   }
   .description {
     @include fontNotoSansJP;
-    font-weight: 400;
+    font-weight: 100;
     font-size: 1.5em;
   }
   .loginLink {
