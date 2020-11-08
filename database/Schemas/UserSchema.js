@@ -8,11 +8,7 @@ const User = new Schema({
   spotifyAccessToken: String,
   spotifyRefreshToken: String,
   expiresIn: String,
-  currentSong: {
-    name: String,
-    artist: String,
-    imgage: String,
-  },
+  contactList: [String],
 });
 
 module.exports = User;

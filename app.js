@@ -67,6 +67,22 @@ app.use("/auth/spotify", authRouter);
 //get the current track
 app.use("/api/spotify", apiRouter);
 
+const pusher = new Pusher({
+  appId: "1103871",
+  key: "5971b97df17e11f9f985",
+  secret: "10824288e74f75589697",
+  cluster: "mt1",
+  useTLS: true,
+});
+console.log("cannot be stopped");
+
+setInterval(async () => {
+  await pusher
+    .trigger("my-channel", "my-event", { message: "Stop" })
+    .catch((error) => console.log(error));
+  
+}, 2000);
+
 //connecting to database
 mongoose
   .connect(process.env.MONGODB_ATLAS_CONNECTION_STRING, {
