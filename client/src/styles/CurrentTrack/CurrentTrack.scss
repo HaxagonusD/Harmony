@@ -1,0 +1,33 @@
+@import "../Constants//Constants.scss";
+
+.CurrentTrack {
+  box-sizing: border-box;
+  height: 100vh;
+  @include fontNotoSansJP;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 100vh;
+
+  .currentlyPlaying {
+    background-color: $spotifyGreen;
+    align-self: center;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    color: white;
+    .listeningTo {
+      @include fontNotoSansJP;
+      font-weight: 700;
+      font-size: 3em;
+    }
+    .info {
+        
+    }
+  }
+  .logout {
+    background-color: rgb(251, 251, 251);
+    justify-self: end;
+    width: 100%;
+  }
+}

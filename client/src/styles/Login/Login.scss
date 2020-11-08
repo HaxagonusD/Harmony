@@ -1,0 +1,40 @@
+@import "../Constants//Constants.scss";
+
+.login {
+  box-sizing: border-box;
+  height: 100vh;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 2em;
+  padding-bottom: 2em;
+  background-color: rgb(251, 251, 251);
+
+  .greeting {
+    @include fontPlayfairDisplay;
+    font-size: 5rem;
+    .green {
+      color: $spotifyGreen;
+      display: inline;
+    }
+  }
+  .description {
+    @include fontNotoSansJP;
+    font-weight: 400;
+    font-size: 1.5em;
+  }
+  .loginLink {
+    @include fontNotoSansJP;
+    text-decoration: none;
+    font-size: 1.5em;
+    color: white;
+    background-color: $spotifyGreen;
+    padding: 1em;
+    margin-top: 0;
+    border-radius: 0.25em;
+    &:hover {
+      background-color: #25a753;
+    }
+  }
+}
