@@ -42,6 +42,7 @@
 
 .Config .AddNumber {
   padding-top: 3em;
+  margin-bottom: 12em;
 }
 
 .Config .AddNumber input {

@@ -23,8 +23,8 @@ module.exports = function (passport) {
     }),
     (req, res) => {
       //sucessfull
-      console.log("callback/ req.user has been set?", req.user);
-      console.log("In /auth/spotify/callback it was sucessfull");
+      // console.log("callback/ req.user has been set?", req.user);
+      // console.log("In /auth/spotify/callback it was sucessfull");
       res.redirect(`${process.env.CLIENT_URL}/config`);
     }
   );

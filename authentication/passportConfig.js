@@ -44,7 +44,9 @@ passport.use(
                 spotifyAccessToken: accessToken,
                 spotifyRefreshToken: refreshToken,
                 expiresIn: expires_in,
-                currentSong: "Nothing right now database default",
+                subscribers: null,
+                subscriptions: null,
+                currentTrack: "Nothing right now",
               },
               (err, something) => {
                 if (err) console.log(err); //if there was an error saving, console.log the error

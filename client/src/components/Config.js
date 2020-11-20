@@ -10,7 +10,7 @@ const Config = ({ loggedIn }) => {
 
       <div className="logout">
         {loggedIn ? (
-          <div>Hello "name goes here"</div>
+          ""
         ) : (
           <Redirect to="/"></Redirect>
         )}

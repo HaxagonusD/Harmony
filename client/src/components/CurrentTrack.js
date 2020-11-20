@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 // import { Redirect } from "react-router-dom";
 import "../styles/CurrentTrack/CurrentTrack.css";
 import Pusher from "pusher-js";
+//components
 import Config from './Config'
 const CurrentTrack = () => {
   const [currentTrack, setCurrentTrack] = useState({ loggedIn: true });
@@ -27,6 +28,7 @@ const CurrentTrack = () => {
   };
 
   useEffect(() => {
+    //learn more about subscriotopns and memory leaks
     let mounted = true;
     if (mounted) {
       Pusher.logToConsole = true;
@@ -64,12 +66,12 @@ const CurrentTrack = () => {
           ""
         )}
         <h1>
-          {currentTrack ? (
+          {currentTrack.album ? (
             <div className="info">
               {currentTrack.album ? (
                 <img
                   src={
-                    currentTrack.album ? currentTrack.album.images[1].url : ""
+                     currentTrack.album.images[1].url 
                   }
                   alt=""
                 ></img>
@@ -82,7 +84,7 @@ const CurrentTrack = () => {
               </div>
             </div>
           ) : (
-            "currenttrack is undefined"
+            "Not listening to anything on spotify"
           )}
         </h1>
       </div>

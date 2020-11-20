@@ -1,4 +1,6 @@
 require("dotenv").config();
+//some logger 
+//need to learn moreabout this
 const morgan = require("morgan");
 const express = require("express");
 const cors = require("cors"); // why does this even exist
@@ -11,18 +13,27 @@ const Pusher = require("pusher");
 
 const SpotifyWebApi = require("spotify-web-api-node");
 //TODO put this in a database
-//How will this work for multiple users?
+//?How will this work for multiple users?
 
 //bringing in passport and session
 const session = require("express-session");
+const  MongoStore = require('connect-mongo')(session);
+mongoose
+  .connect(process.env.MONGODB_ATLAS_CONNECTION_STRING, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then((response) => console.log("Connected to data base"))
+  .catch((error) => console.log(error));
 
 //passprot config
 //we make pasport in another file and pass it to an router that needs something from this config
-
+// well everything is in italics now 
 //app initialization
 const app = express();
 app.locals.passport = require("./authentication/passportConfig");
 
+//logging our requests
 app.use(morgan("dev"));
 //This is bascially our connection to spotify
 //I don't really want to make new conections to to spotify every time
@@ -46,12 +57,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 //TODO Learn more about express session
 //sesstion
+//are these optiosn necessary?
 app.use(
   session({
     secret: "keyboard cat",
-    resave: false,
-    saveUninitialized: false,
-    cookie: { path: "/", httpOnly: true, secure: false, maxAge: null },
+    store: new MongoStore({url :process.env.MONGODB_ATLAS_CONNECTION_STRING}),
+    resave: true,
+    saveUninitialized: true,
   })
 );
 //passport things
@@ -74,7 +86,7 @@ const pusher = new Pusher({
   cluster: "mt1",
   useTLS: true,
 });
-console.log("cannot be stopped");
+
 
 setInterval(() => {
   pusher
@@ -83,16 +95,12 @@ setInterval(() => {
 }, 2000);
 
 //connecting to database
-mongoose
-  .connect(process.env.MONGODB_ATLAS_CONNECTION_STRING, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then((response) => console.log("Connected to data base"))
-  .catch((error) => console.log(error));
+
 
 //listening at  port
 app.set("port", process.env.PORT || 5000);
 const server = app.listen(app.get("port"), () => {
   console.log(`Express running → PORT ${server.address().port}`);
 });
+
+
