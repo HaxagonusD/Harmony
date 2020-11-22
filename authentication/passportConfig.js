@@ -46,7 +46,12 @@ passport.use(
                 expiresIn: expires_in,
                 subscribers: null,
                 subscriptions: null,
-                currentTrack: "Nothing right now",
+                currentTrack: {
+                  songId: "No song id right now",
+                  songName: "No song name right now",
+                  artistName: "No artist right now",
+                  imgLink: "No image link right now"
+                },
               },
               (err, something) => {
                 if (err) console.log(err); //if there was an error saving, console.log the error

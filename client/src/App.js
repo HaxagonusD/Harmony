@@ -2,6 +2,7 @@ import "./App.css";
 //components
 import CurrentTrack from "./components/CurrentTrack";
 import Login from "./components/Login";
+
 import { Switch, Route } from "react-router-dom";
 function App() {
   //TODO add react router. how does reacter router work with ?authorize=true
@@ -9,12 +10,11 @@ function App() {
     <div className="App">
       <Switch>
         <Route exact path="/">
-          <Login/>
+          <Login />
         </Route>
-        <Route path="/config">
+        <Route path="/profile/:id">
           <CurrentTrack />
         </Route>
-        
       </Switch>
     </div>
   );

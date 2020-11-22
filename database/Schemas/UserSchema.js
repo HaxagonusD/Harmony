@@ -10,9 +10,12 @@ const User = new Schema({
   expiresIn: String,
   subscribers: [String],
   subscriptions: [String],
-  currentTrack: String,
-
+  currentTrack: {
+    songId: String,
+    songName: String,
+    artistName: String,
+    imgLink: String,
+  },
 });
 
 module.exports = User;
-

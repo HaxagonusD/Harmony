@@ -25,12 +25,12 @@ module.exports = function (passport) {
       //sucessfull
       // console.log("callback/ req.user has been set?", req.user);
       // console.log("In /auth/spotify/callback it was sucessfull");
-      res.redirect(`${process.env.CLIENT_URL}/config`);
+      res.redirect(`${process.env.CLIENT_URL}/profile/${req.user.id}`);
     }
   );
 
   //TODO
-  //This is for passport doesn't log user out of spotify tho
+  //This is for passport. it doesn't log user out of spotify tho
   //perhaps if user is not defined redirect to login? Doesn't pass port do this already?
   router.get("/logout", (req, res) => {
     req.logOut();

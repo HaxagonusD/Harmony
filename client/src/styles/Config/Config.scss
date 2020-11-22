@@ -23,29 +23,13 @@
       }
     }
   }
-  .CurrentNumbers {
-    padding-top: 3em;
-    // margin-bottom: 9em;
-    font-size: 3em;
-  }
-  .AddNumber {
-    padding-top: 3em;
-    margin-bottom: 12em;
-    input {
-      padding: 0.5em;
-      font-size: 1em;
-      border: none;
-      &:hover{
-          border: 1px solid $spotifyGreen;
-      }
-    }
-    button {
-        color: white;
-        background-color: $spotifyGreen;
-        border: none;
-        border-radius: .5em;
-        padding: 1em;
-        margin-left: 1em;
-    }
+
+  button {
+    color: white;
+    background-color: $spotifyGreen;
+    border: none;
+    border-radius: 0.5em;
+    padding: 1em;
+    margin-left: 1em;
   }
 }

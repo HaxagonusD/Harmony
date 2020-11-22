@@ -1,5 +1,5 @@
 require("dotenv").config();
-//some logger 
+//some logger
 //need to learn moreabout this
 const morgan = require("morgan");
 const express = require("express");
@@ -17,7 +17,7 @@ const SpotifyWebApi = require("spotify-web-api-node");
 
 //bringing in passport and session
 const session = require("express-session");
-const  MongoStore = require('connect-mongo')(session);
+const MongoStore = require("connect-mongo")(session);
 mongoose
   .connect(process.env.MONGODB_ATLAS_CONNECTION_STRING, {
     useNewUrlParser: true,
@@ -28,7 +28,7 @@ mongoose
 
 //passprot config
 //we make pasport in another file and pass it to an router that needs something from this config
-// well everything is in italics now 
+// well everything is in italics now
 //app initialization
 const app = express();
 app.locals.passport = require("./authentication/passportConfig");
@@ -61,7 +61,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(
   session({
     secret: "keyboard cat",
-    store: new MongoStore({url :process.env.MONGODB_ATLAS_CONNECTION_STRING}),
+    store: new MongoStore({ url: process.env.MONGODB_ATLAS_CONNECTION_STRING }),
     resave: true,
     saveUninitialized: true,
   })
@@ -72,12 +72,16 @@ app.use(app.locals.passport.session());
 
 //API routes
 const authRouter = require("./routes/authSpotifyRouters")(app.locals.passport);
-const apiRouter = require("./routes/apiSpotifyRouter");
+const apiSpotifyRouter = require("./routes/apiSpotifyRouter");
+const apiUsersRouter = require("./routes/apiUsersRouter");
+
 //get permission from spotify and save info to req.user
 app.use("/auth/spotify", authRouter);
 
 //get the current track
-app.use("/api/spotify", apiRouter);
+app.use("/api/spotify", apiSpotifyRouter);
+
+app.use("/api/users", apiUsersRouter);
 
 const pusher = new Pusher({
   appId: "1103871",
@@ -87,20 +91,18 @@ const pusher = new Pusher({
   useTLS: true,
 });
 
+const updater = require("./API/SpotifyHandlers/updater");
 
 setInterval(() => {
-  pusher
-    .trigger("my-channel", "my-event", {})
-    .catch((error) => console.log(error));
+  //put the updater in here
+  
+  updater(app);
 }, 2000);
 
 //connecting to database
-
 
 //listening at  port
 app.set("port", process.env.PORT || 5000);
 const server = app.listen(app.get("port"), () => {
   console.log(`Express running → PORT ${server.address().port}`);
 });
-
-

@@ -1,8 +1,15 @@
-// import Axios from "axios"
-import React from "react";
+import React, { useEffect } from "react";
 import "../styles/Login/Login.css";
-// import axios from "axios";
+// import { Redirect } from "react-router-dom";
+// import Cookies from "js-cookie";
 const Login = () => {
+  
+  useEffect(() => {
+    // const instance = axios.create({
+    //   withCredentials: true,
+    // });
+
+  }, []);
   return (
     <div className="login">
       <div className="greeting">
