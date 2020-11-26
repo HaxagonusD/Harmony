@@ -1,4 +1,6 @@
 const User = require("../../database/Models/UserModel");
+// this file is handling getting any user from the database 
+//looks a lot like "./getMeInfo.js"
 module.exports = (req, res) => {
   User.findOne({ id: req.params.id }, (error, user) => {
     if (error) {

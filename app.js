@@ -1,6 +1,6 @@
 require("dotenv").config();
 //some logger
-//need to learn moreabout this
+//need to learn more about this
 const morgan = require("morgan");
 const express = require("express");
 const cors = require("cors"); // why does this even exist
@@ -17,6 +17,7 @@ const SpotifyWebApi = require("spotify-web-api-node");
 
 //bringing in passport and session
 const session = require("express-session");
+//this is for storing session information in mongodb
 const MongoStore = require("connect-mongo")(session);
 mongoose
   .connect(process.env.MONGODB_ATLAS_CONNECTION_STRING, {
@@ -72,27 +73,22 @@ app.use(app.locals.passport.session());
 
 //API routes
 const authRouter = require("./routes/authSpotifyRouters")(app.locals.passport);
-const apiSpotifyRouter = require("./routes/apiSpotifyRouter");
+
 const apiUsersRouter = require("./routes/apiUsersRouter");
 
 //get permission from spotify and save info to req.user
+//TODO add user registration 
 app.use("/auth/spotify", authRouter);
 
-//get the current track
-app.use("/api/spotify", apiSpotifyRouter);
+
 
 app.use("/api/users", apiUsersRouter);
 
-const pusher = new Pusher({
-  appId: "1103871",
-  key: "5971b97df17e11f9f985",
-  secret: "10824288e74f75589697",
-  cluster: "mt1",
-  useTLS: true,
-});
+
 
 const updater = require("./API/SpotifyHandlers/updater");
 
+//This is is telling the server to constanly talk to spotify and get the the current track even when there are not client connected 
 setInterval(() => {
   //put the updater in here
   

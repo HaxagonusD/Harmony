@@ -3,6 +3,7 @@ const router = require("express").Router();
 
 module.exports = function (passport) {
   // console.log(passport)
+  //when we log in passport handles this for us with spotify
   router.get(
     "/",
     passport.authenticate("spotify", {
@@ -16,6 +17,8 @@ module.exports = function (passport) {
     })
   );
 
+
+  // spotify is going make a get request to this route
   router.get(
     "/callback",
     passport.authenticate("spotify", {
@@ -23,8 +26,7 @@ module.exports = function (passport) {
     }),
     (req, res) => {
       //sucessfull
-      // console.log("callback/ req.user has been set?", req.user);
-      // console.log("In /auth/spotify/callback it was sucessfull");
+      //redirect the to the client url
       res.redirect(`${process.env.CLIENT_URL}/profile/${req.user.id}`);
     }
   );
@@ -32,6 +34,7 @@ module.exports = function (passport) {
   //TODO
   //This is for passport. it doesn't log user out of spotify tho
   //perhaps if user is not defined redirect to login? Doesn't pass port do this already?
+  //This is for login the user out 
   router.get("/logout", (req, res) => {
     req.logOut();
 
