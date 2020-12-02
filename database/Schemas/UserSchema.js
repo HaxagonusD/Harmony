@@ -8,6 +8,7 @@ const User = new Schema({
   spotifyAccessToken: String,
   spotifyRefreshToken: String,
   expiresIn: String,
+  phoneNumber: String,
   subscribers: [String],
   subscriptions: [String],
   currentTrack: {
