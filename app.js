@@ -1,6 +1,6 @@
 require("dotenv").config();
+
 //some logger
-//need to learn more about this
 const morgan = require("morgan");
 const express = require("express");
 const cors = require("cors"); // why does this even exist
@@ -8,8 +8,7 @@ const cors = require("cors"); // why does this even exist
 //mongoose
 const mongoose = require("mongoose");
 //im not sure im going to use these
-const cron = require("node-cron");
-const Pusher = require("pusher");
+
 
 const SpotifyWebApi = require("spotify-web-api-node");
 //TODO put this in a database
@@ -29,12 +28,13 @@ mongoose
 
 //passprot config
 //we make pasport in another file and pass it to an router that needs something from this config
-// well everything is in italics now
+
 //app initialization
 const app = express();
 app.locals.passport = require("./authentication/passportConfig");
 
 //logging our requests
+//TODO learn more about this 
 app.use(morgan("dev"));
 //This is bascially our connection to spotify
 //I don't really want to make new conections to to spotify every time
@@ -45,7 +45,7 @@ app.locals.spotifyApi = new SpotifyWebApi({
   redirectUri: process.env.SPOTIFY_REDIRECT_URI,
 });
 
-//middleware
+
 //This is cors because it is dumb but apparently good
 const corsOptions = {
   origin: [process.env.CLIENT_URL, "http://localhost:5000"],
@@ -53,12 +53,14 @@ const corsOptions = {
 };
 //cors is dumb
 app.use(cors(corsOptions));
+
 //parsers
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 //TODO Learn more about express session
+
 //sesstion
-//are these optiosn necessary?
+//?are these options necessary?
 app.use(
   session({
     secret: "keyboard cat",
@@ -67,37 +69,37 @@ app.use(
     saveUninitialized: true,
   })
 );
+
 //passport things
 app.use(app.locals.passport.initialize());
 app.use(app.locals.passport.session());
 
 //API routes
 const authRouter = require("./routes/authSpotifyRouters")(app.locals.passport);
+const apiSubcribe = require("./routes/apiSubcribe");
+const apiUsersRouter = require('./routes/apiUsersRouter')
+//TODO add user registration
 
-const apiUsersRouter = require("./routes/apiUsersRouter");
-
-//get permission from spotify and save info to req.user
-//TODO add user registration 
-app.use("/auth/spotify", authRouter);
-
-
+//using the routes
+app.use("/auth", authRouter);
 
 app.use("/api/users", apiUsersRouter);
-
-
+app.use("/api/subscribe", apiSubcribe);
 
 const updater = require("./API/SpotifyHandlers/updater");
 
-//This is is telling the server to constanly talk to spotify and get the the current track even when there are not client connected 
+//This is is telling the server to constanly talk to spotify and get the the current track even when there are not client connected
+//This is not good because it slows down the server and it runs on O(n) time
+//That's a problem with millions of users
+//It doesn't matter to us right not but the slowing down the server part does
+//*Solution: Run it as another server or make a childprocess or a cluster or a worker or some other solution that doesn't ax the server
 setInterval(() => {
   //put the updater in here
-  
+
   updater(app);
 }, 2000);
 
-//connecting to database
-
-//listening at  port
+//listening at port 5000
 app.set("port", process.env.PORT || 5000);
 const server = app.listen(app.get("port"), () => {
   console.log(`Express running → PORT ${server.address().port}`);

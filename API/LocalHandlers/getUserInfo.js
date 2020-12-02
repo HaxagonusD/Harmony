@@ -3,15 +3,18 @@ const User = require("../../database/Models/UserModel");
 //looks a lot like "./getMeInfo.js"
 module.exports = (req, res) => {
   User.findOne({ id: req.params.id }, (error, user) => {
+    //if there was an error 
     if (error) {
       console.log("There was an error looking for the user in the database");
       console.error(error);
       res.json({ loggedIn: false });
     }
+    //if we didn't user 
     if (!user) {
       console.log("no user was found the in the database");
       res.json({ loggedIn: false });
     }
+    //if we found user 
     if (user) {
       res.json(user);
     }
