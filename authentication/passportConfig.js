@@ -43,6 +43,7 @@ passport.use(
                 provider: profile.provider,
                 spotifyAccessToken: accessToken,
                 spotifyRefreshToken: refreshToken,
+                phoneNumber: null,
                 expiresIn: expires_in,
                 subscribers: null,
                 subscriptions: null,

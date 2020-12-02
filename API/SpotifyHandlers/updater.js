@@ -26,7 +26,7 @@ module.exports = async (app) => {
             user.currentTrack.songName = data.body.item.name;
             user.currentTrack.imgLink = data.body.item.album.images[1].url;
             //Notify who ever is subscribed that the track changed 
-            sendMessageUser(user, user.currentTrack);
+            sendMessageUser(user);
             //save the user to the data base
             user.save((error) => {
               if (error) {
@@ -61,7 +61,7 @@ module.exports = async (app) => {
                   user.currentTrack.imgLink =
                     data.body.item.album.images[1].url;
                   //This is there the twilio magic happens
-                  sendMessageUser(user, user.currentTrack);
+                  sendMessageUser(user);
                   user.save((error) => {
                     if (error) {
                       console.error(error);
