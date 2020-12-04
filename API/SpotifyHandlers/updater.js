@@ -20,12 +20,13 @@ module.exports = async (app) => {
           //if the track is not the same 
           if (data.body.item.id !== user.currentTrack.songId) {
             //update the information for the user 
-            console.log(data.body.item);
+            // console.log(data.body.item);
             user.currentTrack.songId = data.body.item.id;
             user.currentTrack.artistName = data.body.item.artists[0].name;
             user.currentTrack.songName = data.body.item.name;
             user.currentTrack.imgLink = data.body.item.album.images[1].url;
-            //Notify who ever is subscribed that the track changed 
+            //Notify who ever is subscried that the track changed 
+            console.log('its happening');
             sendMessageUser(user);
             //save the user to the data base
             user.save((error) => {
@@ -61,6 +62,7 @@ module.exports = async (app) => {
                   user.currentTrack.imgLink =
                     data.body.item.album.images[1].url;
                   //This is there the twilio magic happens
+                  console.log('its happening');
                   sendMessageUser(user);
                   user.save((error) => {
                     if (error) {

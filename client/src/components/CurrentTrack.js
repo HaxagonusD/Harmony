@@ -5,7 +5,7 @@
 
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import Profile from "./Profile";
 // import { Redirect } from "react-router-dom";
 import "../styles/CurrentTrack/CurrentTrack.css";
@@ -28,7 +28,7 @@ const CurrentTrack = () => {
     });
     // instance.defaults.headers.post['Content-Type'] ='application/x-www-form-urlencoded';
     instance
-      .get(`http://localhost:5000/api/users/${id}`)
+      .get(`/api/users/${id}`)
       .then((data) => {
         console.log(data.data);
 
@@ -58,7 +58,9 @@ const CurrentTrack = () => {
       ) : (
         <a href="http://localhost:5000/login">Connect your Spotify account</a>
       )} */}
+      
       <div className="currentlyPlaying">
+      <Link to="/explore">Find more users. Explore Page</Link>
         {user ? <div className="listeningTo">You are listening to</div> : ""}
         <h1>
           {user ? (

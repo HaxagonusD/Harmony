@@ -9,7 +9,7 @@ module.exports = function (passport) {
 
   // const corsOptions = {
   //   origin: ['*'],
-  //   // credentials: true,
+  //  // credentials: true,
   // };
 
   // function loggedIn(req, res, next) {
