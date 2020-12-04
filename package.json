@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon app.js"
   },
   "repository": {
     "type": "git",
@@ -27,12 +27,12 @@
     "express-session": "^1.17.1",
     "js-cookie": "^2.2.1",
     "mongoose": "^5.10.12",
+    "mongoose-simple-random": "^0.4.1",
     "morgan": "^1.10.0",
-    "node-cron": "^2.0.3",
     "passport": "^0.4.1",
     "passport-spotify": "^1.1.0",
-    "pusher": "^4.0.0",
     "randomstring": "^1.1.5",
-    "spotify-web-api-node": "^5.0.0"
+    "spotify-web-api-node": "^5.0.0",
+    "twilio": "^3.52.0"
   }
 }

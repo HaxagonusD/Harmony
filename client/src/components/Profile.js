@@ -12,7 +12,7 @@ const Profile = ({ user, loggedIn }) => {
       withCredentials: true,
     });
     instance
-      .post(`http://localhost:5000/api/subscribe/${id}`)
+      .post(`/api/subscribe/${id}`)
       .then((response) => console.log(response.data))
       .catch((error) => console.error(error));
   };
@@ -21,7 +21,7 @@ const Profile = ({ user, loggedIn }) => {
     <div>
       <button onClick={() => subcribeToThisUser()}>Subscribe</button>
       <div className="logoutButton">
-        <a href="http://localhost:5000/auth/logout">Logout</a>
+        <a href="/auth/logout">Logout</a>
       </div>
       <div className="logout">
         {loggedIn ? "" : <Redirect to="/"></Redirect>}

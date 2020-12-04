@@ -4,11 +4,10 @@ require("dotenv").config();
 const morgan = require("morgan");
 const express = require("express");
 const cors = require("cors"); // why does this even exist
-
+const path = require('path');
 //mongoose
 const mongoose = require("mongoose");
 //im not sure im going to use these
-
 
 const SpotifyWebApi = require("spotify-web-api-node");
 //TODO put this in a database
@@ -31,10 +30,13 @@ mongoose
 
 //app initialization
 const app = express();
+
+// app.use(express.static(path.join(__dirname, "client", "build")));
+
 app.locals.passport = require("./authentication/passportConfig");
 
 //logging our requests
-//TODO learn more about this 
+//TODO learn more about this
 app.use(morgan("dev"));
 //This is bascially our connection to spotify
 //I don't really want to make new conections to to spotify every time
@@ -45,10 +47,9 @@ app.locals.spotifyApi = new SpotifyWebApi({
   redirectUri: process.env.SPOTIFY_REDIRECT_URI,
 });
 
-
 //This is cors because it is dumb but apparently good
 const corsOptions = {
-  origin: [process.env.CLIENT_URL, "http://localhost:5000"],
+  origin: process.env.CLIENT_URL,
   credentials: true,
 };
 //cors is dumb
@@ -77,7 +78,7 @@ app.use(app.locals.passport.session());
 //API routes
 const authRouter = require("./routes/authSpotifyRouters")(app.locals.passport);
 const apiSubcribe = require("./routes/apiSubcribe");
-const apiUsersRouter = require('./routes/apiUsersRouter')
+const apiUsersRouter = require("./routes/apiUsersRouter");
 //TODO add user registration
 
 //using the routes
@@ -85,6 +86,9 @@ app.use("/auth", authRouter);
 
 app.use("/api/users", apiUsersRouter);
 app.use("/api/subscribe", apiSubcribe);
+// app.get("/*", function (req, res) {
+//   res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+// });
 
 const updater = require("./API/SpotifyHandlers/updater");
 
@@ -104,3 +108,5 @@ app.set("port", process.env.PORT || 5000);
 const server = app.listen(app.get("port"), () => {
   console.log(`Express running → PORT ${server.address().port}`);
 });
+
+//TODO look into sql postgres?
