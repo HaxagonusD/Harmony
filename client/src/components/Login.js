@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import axios from "axios";
+import React from "react";
+
 import "../styles/Login/Login.css";
 // import { Redirect } from "react-router-dom";
 // import Cookies from "js-cookie";

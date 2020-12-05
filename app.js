@@ -4,7 +4,8 @@ require("dotenv").config();
 const morgan = require("morgan");
 const express = require("express");
 const cors = require("cors"); // why does this even exist
-const path = require('path');
+const path = require("path");
+const { Worker } = require("worker_threads");
 //mongoose
 const mongoose = require("mongoose");
 //im not sure im going to use these
@@ -33,7 +34,7 @@ const app = express();
 
 // app.use(express.static(path.join(__dirname, "client", "build")));
 
-app.locals.passport = require("./authentication/passportConfig");
+app.locals.passport = require("./config/authentication/passportConfig");
 
 //logging our requests
 //TODO learn more about this
@@ -89,19 +90,18 @@ app.use("/api/subscribe", apiSubcribe);
 // app.get("/*", function (req, res) {
 //   res.sendFile(path.join(__dirname, "client", "build", "index.html"));
 // });
-
-const updater = require("./API/SpotifyHandlers/updater");
-
+app.get("/ping", (req, res) => {
+  res.send("pong");
+});
+const updaterWorker = new Worker("./asyncTasks/updaterRunner.js");
+updaterWorker.on("error", (error) => {
+  console.error(error);
+});
 //This is is telling the server to constanly talk to spotify and get the the current track even when there are not client connected
 //This is not good because it slows down the server and it runs on O(n) time
 //That's a problem with millions of users
 //It doesn't matter to us right not but the slowing down the server part does
 //*Solution: Run it as another server or make a childprocess or a cluster or a worker or some other solution that doesn't ax the server
-setInterval(() => {
-  //put the updater in here
-
-  updater(app);
-}, 2000);
 
 //listening at port 5000
 app.set("port", process.env.PORT || 5000);
