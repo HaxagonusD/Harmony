@@ -1,7 +1,7 @@
 //This file is what updates the current track for every user
 require("dotenv").config();
 const User = require("../database/Models/UserModel");
-const sendMessageUser = require("../routes/API/TwilioHandlers/sendMessageUser");
+const sendTwilioSMSToSubscribers = require("../services/sendTwilioSMSToSubscribers");
 const SpotifyWebApi = require("spotify-web-api-node");
 spotifyApi = new SpotifyWebApi({
   clientId: process.env.SPOTIFY_CLIENT_ID,
@@ -10,7 +10,6 @@ spotifyApi = new SpotifyWebApi({
 });
 //!You repeat yourself a lot in this in this code
 //!Turn it into a function
-
 
 module.exports = async () => {
   //for every user in the database
@@ -32,10 +31,10 @@ module.exports = async () => {
             user.currentTrack.artistName = data.body.item.artists[0].name;
             user.currentTrack.songName = data.body.item.name;
             user.currentTrack.imgLink = data.body.item.album.images[1].url;
-            console.log(user)
+            console.log(user);
             //Notify who ever is subscried that the track changed
             console.log("its happening");
-            // sendMessageUser(user);
+            sendTwilioSMSToSubscribers(user);
             //save the user to the data base
             user.save((error) => {
               if (error) {
@@ -70,7 +69,7 @@ module.exports = async () => {
                     data.body.item.album.images[1].url;
                   //This is there the twilio magic happens
                   console.log("its happening");
-                  // sendMessageUser(user);
+                  sendTwilioSMSToSubscribers(user);
                   user.save((error) => {
                     if (error) {
                       console.error(error);

@@ -93,7 +93,7 @@ app.use("/api/subscribe", apiSubcribe);
 app.get("/ping", (req, res) => {
   res.send("pong");
 });
-const updaterWorker = new Worker("./services/updaterRunner.js");
+const updaterWorker = new Worker("./asyncTasks/updaterRunner.js");
 updaterWorker.on("error", (error) => {
   console.error(error);
 });

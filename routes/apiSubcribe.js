@@ -1,6 +1,6 @@
 require("dotenv").config();
 const cors = require("cors");
-const subscribeToUser = require("./API/LocalHandlers/subscribeToUser");
+const subscribeToUser = require("./API/subscribeToUser");
 
 const corsOptions = {
   origin: [process.env.CLIENT_URL, "http://localhost:5000"],
