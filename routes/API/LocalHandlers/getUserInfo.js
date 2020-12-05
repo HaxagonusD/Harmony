@@ -1,4 +1,4 @@
-const User = require("../../database/Models/UserModel");
+const User = require("../../../database/Models/UserModel");
 // this file is handling getting any user from the database
 //looks a lot like "./getMeInfo.js"
 module.exports = (req, res) => {

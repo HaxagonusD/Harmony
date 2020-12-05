@@ -1,7 +1,7 @@
 require("dotenv").config();
-const getMeInfo = require('../API/LocalHandlers/getMeInfo')
-const getUserInfo = require('../API/LocalHandlers/getUserInfo')
-const getExplore = require('../API/LocalHandlers/getExplore')
+const getMeInfo = require('./API/LocalHandlers/getMeInfo')
+const getUserInfo = require('./API/LocalHandlers/getUserInfo')
+const getExplore = require('./API/LocalHandlers/getExplore')
 const cors = require("cors");
 const corsOptions = {
   origin: [process.env.CLIENT_URL, "http://localhost:5000"],

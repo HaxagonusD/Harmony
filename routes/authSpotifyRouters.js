@@ -43,7 +43,9 @@ module.exports = function (passport) {
   router.get(
     "/spotify/callback",
     passport.authenticate("spotify", {
-      failureRedirect: `${process.env.CLIENT_URL}`,
+
+      failureRedirect: `${process.env.CLIENT_URL}/404`,
+      // successRedirect: `${process.env.CLIENT_URL}/profile/${req.user.id}`
     }),
     (req, res) => {
       //sucessfull
@@ -63,3 +65,4 @@ module.exports = function (passport) {
   });
   return router;
 };
+

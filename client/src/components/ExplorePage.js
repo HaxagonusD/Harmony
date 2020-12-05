@@ -1,32 +1,36 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import PersonLink from "./PersonLink";
+import "../styles/ExplorePage/ExplorePage.css";
 // import Profile from "./Profile";
 
 const ExplorePage = () => {
-  const [usersToDisplay, setUsersToDisplay] = useState(undefined);
+  const [usersToDisplay, setUsersToDisplay] = useState(undefined); // initially undefined
+  //gets from server 
   useEffect(() => {
     axios
       .get("/api/users/explore")
       .then(({ data }) => {
-        setUsersToDisplay(data)
+        console.log(data);
+        setUsersToDisplay(data);
       })
       .catch((error) => console.error(error));
   }, []);
+
   return usersToDisplay !== undefined ? (
-    <div>
-      <h1>Here is the Explore Page</h1>
-      {usersToDisplay.map((user) => {
-        return (
-          <Link to={`profile/${user.id}`}>
-            <div>{user.displayName}</div>
-            <div>{user.id}</div>
-          </Link>
-        );
-      })}
+    <div className="explorePage">
+      <div className="title">
+        {" "}
+        <h1>This is the explore page</h1>
+      </div>
+      <div className="peopleLinks">
+        {usersToDisplay.map((user, index) => {
+          return <PersonLink key={index} user={user} />;
+        })}
+      </div>
     </div>
   ) : (
-    <h1>Here is the Explore Page</h1>
+    <h1>Loading...</h1>
   );
 };
 

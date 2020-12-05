@@ -1,4 +1,4 @@
-const User = require("../../database/Models/UserModel");
+const User = require("../../../database/Models/UserModel");
 //!.count is deprecated. Make your own mongoose-simple-random library
 module.exports = (req, res) => {
   console.log('something is off')
@@ -10,3 +10,4 @@ module.exports = (req, res) => {
   });
   
 };
+

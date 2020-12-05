@@ -1,6 +1,6 @@
 const passport = require("passport");
 const SpotifyStrategy = require("passport-spotify").Strategy;
-const User = require("../database/Models/UserModel");
+const User = require("../../database/Models/UserModel");
 //why am i using the passport library instead of the passport instace i declared in app.js?
 passport.serializeUser(function (user, done) {
   done(null, user.id);
@@ -35,6 +35,7 @@ passport.use(
           if (!user) {
             //if we didn't find a user make a new one with the info frrom spotify
             // yes we are using the argument that is empty
+            // console.log("we are creating a new user")
             User.create(
               {
                 displayName: profile.displayName,
@@ -43,21 +44,12 @@ passport.use(
                 provider: profile.provider,
                 spotifyAccessToken: accessToken,
                 spotifyRefreshToken: refreshToken,
-                phoneNumber: null,
                 expiresIn: expires_in,
-                subscribers: null,
-                subscriptions: null,
-                currentTrack: {
-                  songId: "No song id right now",
-                  songName: "No song name right now",
-                  artistName: "No artist right now",
-                  imgLink: "No image link right now"
-                },
               },
-              (err, something) => {
+              (err, theMadeUser) => {
                 if (err) console.log(err); //if there was an error saving, console.log the error
                 // console.log(`User was created: `, something);
-                return done(err, user); // return done with the error and new user
+                return done(err, theMadeUser); // return done with the error and new user
               }
             );
           } else {

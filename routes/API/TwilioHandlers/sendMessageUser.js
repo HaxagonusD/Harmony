@@ -1,6 +1,5 @@
 // This file is hwere notifications will be handled
-const express = require('express');
-const cors = require('cors');
+
 const Twilio = require('twilio');
 require("dotenv").config();
 
@@ -9,7 +8,7 @@ const authToken = process.env.AUTH_TOKEN;   // Your Auth Token from www.twilio.c
 const twilioNumber = process.env.TWILIO_NUMBER; // Twilio number 
 const client = new Twilio(accountSid, authToken);
 
-const UserModel = require('../../database/Models/UserModel');
+const UserModel = require('../../../database/Models/UserModel');
 
 module.exports = (user)=>{
     for (const subscriber of user.subscribers){

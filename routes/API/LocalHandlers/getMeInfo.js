@@ -1,4 +1,4 @@
-const User = require("../../database/Models/UserModel");
+const User = require("../../../database/Models/UserModel");
 
 //this file is handling getting the logged in user from the database and sending it to the client when they ask 
 module.exports = (req, res) => {
