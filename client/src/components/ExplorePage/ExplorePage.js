@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import PersonLink from "./PersonLink";
-import "../styles/ExplorePage/ExplorePage.css";
+import PersonLink from "../PersonLink/PersonLink";
+// import "../styles/ExplorePage/ExplorePage.css";
 // import Profile from "./Profile";
 
 const ExplorePage = () => {

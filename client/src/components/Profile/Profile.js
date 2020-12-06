@@ -1,13 +1,15 @@
 import React from "react";
 import axios from "axios";
-import { Redirect, useParams } from "react-router-dom";
-import "../styles/Config/Config.css";
+import { Redirect, useParams, useHistory } from "react-router-dom";
+
+// import "../styles/Config/Config.css";
 const Profile = ({ user, loggedIn }) => {
   const { id } = useParams();
-  
+  let history = useHistory();
+
   const subcribeToThisUser = () => {
     //send a request with the id of the user in the url
-    
+
     const instance = axios.create({
       withCredentials: true,
     });
@@ -16,15 +18,23 @@ const Profile = ({ user, loggedIn }) => {
       .then((response) => console.log(response.data))
       .catch((error) => console.error(error));
   };
+  const logOut = () => {
+    const instance = axios.create({
+      withCredentials: true,
+    });
+    instance
+      .get(`/auth/logout`)
+      .then(() => {
+        history.push("/");
+      })
+      .catch((error) => console.error(error));
+  };
 
   return (
     <div>
       <button onClick={() => subcribeToThisUser()}>Subscribe</button>
       <div className="logoutButton">
-        <a href="/auth/logout">Logout</a>
-      </div>
-      <div className="logout">
-        {loggedIn ? "" : <Redirect to="/"></Redirect>}
+        <button onClick={() => logOut()}>Logout</button>
       </div>
 
       {user !== undefined ? (

@@ -1,9 +1,10 @@
 import "./App.css";
 //components
-import CurrentTrack from "./components/CurrentTrack";
-import Login from "./components/Login";
-import NotFound from "./components/NotFound";
-import ExplorePage from "./components/ExplorePage";
+import CurrentTrack from "./components/Dashboard/Dashboard";
+import HomePage from "./components/HomePage/HomePage";
+import NotFound from "./components/NotFound/NotFound";
+import ExplorePage from "./components/ExplorePage/ExplorePage";
+//react router
 import { Switch, Route } from "react-router-dom";
 function App() {
   //TODO add react router. how does reacter router work with ?authorize=true
@@ -11,12 +12,14 @@ function App() {
     <div className="App">
       <Switch>
         <Route exact path="/">
-          <Login />
+          <HomePage />
         </Route>
         <Route path="/profile/:id">
           <CurrentTrack />
         </Route>
-        <Route path="/404"></Route>
+        <Route path="/404">
+          <NotFound />
+        </Route>
         <Route path="/explore">
           <ExplorePage />
         </Route>

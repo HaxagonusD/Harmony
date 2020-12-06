@@ -5,18 +5,17 @@
 
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
-import Profile from "./Profile";
+import { useParams, Link, useHistory } from "react-router-dom";
+import Profile from "../Profile/Profile";
 // import { Redirect } from "react-router-dom";
-import "../styles/CurrentTrack/CurrentTrack.css";
-// import Pusher from "pusher-js";
+import "./styles/Dashboard.css";
 
 //components
 
 const CurrentTrack = () => {
   const [user, setUser] = useState(undefined);
   let { id } = useParams();
-
+  let history = useHistory();
   // const urlParams = new URLSearchParams(window.location.search);
   // //TODO can you do this without state? Why is it refreshing when useState only happens once?
   // const [isUserAuthorized, setIsUserAuthorized] = useState(
@@ -29,10 +28,14 @@ const CurrentTrack = () => {
     // instance.defaults.headers.post['Content-Type'] ='application/x-www-form-urlencoded';
     instance
       .get(`/api/users/${id}`)
-      .then((data) => {
-        console.log(data.data);
-
-        setUser(data.data);
+      .then(({ data }) => {
+        if (data === null) {
+          console.log("data is null");
+          history.push("/404");
+        } else {
+          console.log(data)
+          setUser(data);
+        }
       })
       .catch((error) => console.error(error));
   };
@@ -58,9 +61,9 @@ const CurrentTrack = () => {
       ) : (
         <a href="http://localhost:5000/login">Connect your Spotify account</a>
       )} */}
-      
+
       <div className="currentlyPlaying">
-      <Link to="/explore">Find more users. Explore Page</Link>
+        <Link to="/explore">Find more users. Explore Page</Link>
         {user ? <div className="listeningTo">You are listening to</div> : ""}
         <h1>
           {user ? (

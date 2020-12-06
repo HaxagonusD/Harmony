@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "ACAA,OAAO,CAAC,mHAAI;AACZ,OAAO,CAAC,yEAAI;AACZ,OAAO,CAAC,sEAAI;AACZ,OAAO,CAAC,kFAAI;ADDZ,AAAA,aAAa,CAAC;EACZ,gBAAgB,EAAE,OAAO;EACzB,MAAM,EAAE,KAAK;CACd",
+    "sources": [
+        "Dashboard.scss",
+        "../../GlobalStyles/Constants.scss"
+    ],
+    "names": [],
+    "file": "Dashboard.css"
+}

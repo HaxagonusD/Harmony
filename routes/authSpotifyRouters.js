@@ -6,25 +6,19 @@ module.exports = function (passport) {
   // console.log(passport)
   //when we log in passport handles this for us with spotify
 
-
-  // const corsOptions = {
-  //   origin: ['*'],
-  //  // credentials: true,
-  // };
-
-  // function loggedIn(req, res, next) {
-  //   if (req.user) {
-  //     next();
-  //   } else {
-  //     res.redirect(`${process.env.CLIENT_URL}/`);
-  //   }
-  // }
+  function loggedIn(req, res, next) {
+    if (req.user) {
+      next();
+    } else {
+      res.json(null);
+    }
+  }
 
   // // router.use(cors(corsOptions));
-  // router.get("/isloggedin", cors(corsOptions),loggedIn, (req, res) => {
-  //   //the person is logged in so redirect them to their profile page
-  //   res.redirect(`${process.env.CLIENT_URL}/profile/${req.user.id}`);
-  // });
+  router.get("/isloggedin", loggedIn, (req, res) => {
+    //the person is logged in so redirect them to their profile page
+    res.json({ id: req.user.id });
+  });
 
   router.get(
     "/spotify",
@@ -43,7 +37,6 @@ module.exports = function (passport) {
   router.get(
     "/spotify/callback",
     passport.authenticate("spotify", {
-
       failureRedirect: `${process.env.CLIENT_URL}/404`,
       // successRedirect: `${process.env.CLIENT_URL}/profile/${req.user.id}`
     }),
@@ -61,8 +54,7 @@ module.exports = function (passport) {
   router.get("/logout", (req, res) => {
     req.logOut();
 
-    res.redirect(`${process.env.CLIENT_URL}/`);
+    res.status(200).end()
   });
   return router;
 };
-

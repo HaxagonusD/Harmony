@@ -1,0 +1,26 @@
+@import '../../GlobalStyles/Constants.scss';
+.NotFound{
+    display:grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    column-gap: 2rem;
+    row-gap: 2rem;
+    height: 100vh;
+    background-color: #FDFCFC;
+    @include fontPlayfairDisplay;
+    overflow: hidden;
+    .message {
+        grid-row: 3 / span 1;
+        grid-column: 2 / span 6;
+        font-size: 5rem;
+        display: flex;
+        align-items: center;
+        color: rgb(72, 87, 136);
+    }
+    img {
+        width: 80%;
+        height: auto;
+        grid-column: 7 / span 6;
+        grid-row: 2 / span 3;
+    }
+}

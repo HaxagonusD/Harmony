@@ -1,0 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700&family=Playfair+Display:wght@600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100&display=swap");
+
+$spotifyGreen: #1db954;
+
+@mixin fontNotoSansJP {
+  font-family: "Noto Sans JP", sans-serif;
+}
+
+@mixin fontPlayfairDisplay {
+  font-family: "Playfair Display", serif;
+}
+
+@mixin fontOpenSans {
+  font-family: "Open Sans", sans-serif;
+}
