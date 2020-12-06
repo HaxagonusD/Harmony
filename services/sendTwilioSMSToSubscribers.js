@@ -9,7 +9,7 @@ const FindOneUserByID = require("../database/Queries/FindOneUserByID");
 
 module.exports = (user) => {
   for (const subscriber of user.subscribers) {
-    console.log("Twilio is sending message... ");
+    // console.log("Twilio is sending message... ");
     FindOneUserByID(subscriber)
       .then((document) => {
         if (document) {
@@ -20,7 +20,7 @@ module.exports = (user) => {
               from: twilioNumber,
             })
             .then((message) => {
-              console.log("message: ", message);
+              // console.log("message: ", message);
             })
             .catch((e) => {
               console.error(e);

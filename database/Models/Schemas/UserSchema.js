@@ -17,7 +17,7 @@ const User = new Schema({
     songId: { type: String, default: "No song ID yet " },
     songName: { type: String, default: "No song Name yet" },
     artistName: { type: String, default: "No artist Name yet" },
-    imgLink: { type: String, default: "No imgLink yet" },
+    imgLink: { type: [String], default: [] },
   },
 });
 User.plugin(mongooseRandom);

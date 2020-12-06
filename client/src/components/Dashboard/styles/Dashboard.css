@@ -3,7 +3,55 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100&display=swap");
 .CurrentTrack {
-  background-color: #FDFCFC;
+  background-color: #fdfcfc;
   height: 100vh;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[12];
+      grid-template-columns: repeat(12, 1fr);
+  -ms-grid-rows: (1fr)[6];
+      grid-template-rows: repeat(6, 1fr);
+  gap: 2rem;
+  font-family: "Playfair Display", serif;
+}
+
+.CurrentTrack .currentlyPlaying {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 6;
+  grid-column: 1 / span 6;
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 6;
+  grid-row: 1 / span 6;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.CurrentTrack .currentlyPlaying a {
+  text-decoration: none;
+}
+
+.CurrentTrack .currentlyPlaying .info {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: column-reverse;
+          flex-direction: column-reverse;
+}
+
+.CurrentTrack .currentlyPlaying .info .name {
+  color: #FDFCFC;
+  font-size: 64px;
+}
+
+.CurrentTrack .currentlyPlaying .info .artist {
+  color: #FDFCFC;
+  font-size: 36px;
+  margin-bottom: 72px;
 }
 /*# sourceMappingURL=Dashboard.css.map */

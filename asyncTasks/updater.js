@@ -30,8 +30,11 @@ module.exports = async () => {
             user.currentTrack.songId = data.body.item.id;
             user.currentTrack.artistName = data.body.item.artists[0].name;
             user.currentTrack.songName = data.body.item.name;
-            user.currentTrack.imgLink = data.body.item.album.images[1].url;
-           
+            user.currentTrack.imgLink = data.body.item.album.images.map((imageItem)=>{
+              return imageItem.url;
+            });
+            // console.log(user.currentTrack.imgLink)
+            // console.log("-----------------",data.body.item.album.images)
             //Notify who ever is subscried that the track changed
             
             sendTwilioSMSToSubscribers(user);
@@ -65,8 +68,10 @@ module.exports = async () => {
                   user.currentTrack.songId = data.body.item.id;
                   user.currentTrack.artistName = data.body.item.artists[0].name;
                   user.currentTrack.songName = data.body.item.name;
-                  user.currentTrack.imgLink =
-                    data.body.item.album.images[1].url;
+                  user.currentTrack.imgLink = data.body.item.album.images.map((imageItem)=>{
+                    return imageItem.url;
+                  });
+                  
                   //This is there the twilio magic happens
                   console.log("its happening");
                   sendTwilioSMSToSubscribers(user);

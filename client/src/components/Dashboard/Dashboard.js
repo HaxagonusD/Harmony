@@ -4,7 +4,7 @@
  */
 
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useParams, Link, useHistory } from "react-router-dom";
 import Profile from "../Profile/Profile";
 // import { Redirect } from "react-router-dom";
@@ -21,7 +21,8 @@ const CurrentTrack = () => {
   // const [isUserAuthorized, setIsUserAuthorized] = useState(
   //   urlParams.has("authorized") ? true : false
   // );
-  const getUser = () => {
+  const getUser = useRef();
+  getUser.current = () => {
     const instance = axios.create({
       withCredentials: true,
     });
@@ -33,7 +34,7 @@ const CurrentTrack = () => {
           console.log("data is null");
           history.push("/404");
         } else {
-          console.log(data)
+          // console.log(data);
           setUser(data);
         }
       })
@@ -43,7 +44,7 @@ const CurrentTrack = () => {
   useEffect(() => {
     //learn more about subscriotopns and memory leaks
     const updateUserInterval = setInterval(() => {
-      getUser();
+      getUser.current();
     }, 2000);
     return () => {
       clearInterval(updateUserInterval);
@@ -63,19 +64,33 @@ const CurrentTrack = () => {
       )} */}
 
       <div className="currentlyPlaying">
-        <Link to="/explore">Find more users. Explore Page</Link>
-        {user ? <div className="listeningTo">You are listening to</div> : ""}
-        <h1>
-          {user ? (
-            <div className="info">
-              {user ? <img src={user.currentTrack.imgLink} alt=""></img> : ""}
-              <div className="name">{user.currentTrack.songName}</div>
+        {/* {user ? <div className="listeningTo">You are listening to</div> : ""} */}
+
+        {user ? (
+          <a
+            href={"https://open.spotify.com/track/" + user.currentTrack.songId}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <div
+              className="info"
+              style={{
+                background: `linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url(${user.currentTrack.imgLink[0]})`,
+              }}
+            >
+              {/* backgroundImage:`url(${user.currentTrack.imgLink[0]})` */}
+              {/* <img
+                className="albumImage"
+                src={}
+                alt="Some alternate text"
+              ></img> */}
               <div className="artist">{user.currentTrack.artistName}</div>
+              <div className="name">{user.currentTrack.songName}</div>
             </div>
-          ) : (
-            "Not listening to anything on spotify"
-          )}
-        </h1>
+          </a>
+        ) : (
+          "Not listening to anything on spotify"
+        )}
       </div>
       <Profile user={user} loggedIn={user ? true : true} />
     </div>
