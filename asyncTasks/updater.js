@@ -13,7 +13,7 @@ spotifyApi = new SpotifyWebApi({
 
 module.exports = async () => {
   //for every user in the database
-  for await (const user of User.find()) {
+  for await (const user of User.find()) {          
     //set the access token from the user
     spotifyApi.setAccessToken(`${user.spotifyAccessToken}`);
     // get the curren track of th user
@@ -31,9 +31,9 @@ module.exports = async () => {
             user.currentTrack.artistName = data.body.item.artists[0].name;
             user.currentTrack.songName = data.body.item.name;
             user.currentTrack.imgLink = data.body.item.album.images[1].url;
-            console.log(user);
+           
             //Notify who ever is subscried that the track changed
-            console.log("its happening");
+            
             sendTwilioSMSToSubscribers(user);
             //save the user to the data base
             user.save((error) => {

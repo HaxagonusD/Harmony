@@ -1,5 +1,3 @@
-
-
 require("dotenv").config();
 const Twilio = require("twilio");
 const accountSid = process.env.ACCOUNT_SID; // Your Account SID from www.twilio.com/console
@@ -11,6 +9,7 @@ const FindOneUserByID = require("../database/Queries/FindOneUserByID");
 
 module.exports = (user) => {
   for (const subscriber of user.subscribers) {
+    console.log("Twilio is sending message... ");
     FindOneUserByID(subscriber)
       .then((document) => {
         if (document) {
