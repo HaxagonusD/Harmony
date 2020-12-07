@@ -90,10 +90,10 @@ app.use("/api/subscribe", apiSubcribe);
 // app.get("/*", function (req, res) {
 //   res.sendFile(path.join(__dirname, "client", "build", "index.html"));
 // });
-app.get("/ping", (req, res) => {
-  res.send("pong");
-});
+
+
 const updaterWorker = new Worker("./asyncTasks/updaterRunner.js");
+
 updaterWorker.on("error", (error) => {
   console.error(error);
 });

@@ -58,3 +58,11 @@ module.exports = function (passport) {
   });
   return router;
 };
+
+//TODO
+//*callback from spotify -> are they or are they not registered 
+//* redirect to frontend form 
+//TODO make fronend form
+//*Submit their phone number -> verify twilio
+//TODO make routes 
+//verify again or taken to profile -> databse phone number is registered

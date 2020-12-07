@@ -5,7 +5,7 @@
 
 import axios from "axios";
 import React, { useEffect, useState, useRef } from "react";
-import { useParams, Link, useHistory } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import Profile from "../Profile/Profile";
 // import { Redirect } from "react-router-dom";
 import "./styles/Dashboard.css";

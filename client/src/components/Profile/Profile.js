@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link, useParams, useHistory } from "react-router-dom";
 
 // import "../styles/Config/Config.css";
-const Profile = ({ user, loggedIn }) => {
+const Profile = ({ user }) => {
   const { id } = useParams();
   let history = useHistory();
 
@@ -15,7 +15,7 @@ const Profile = ({ user, loggedIn }) => {
     });
     instance
       .post(`/api/subscribe/${id}`)
-      // .then((response) => console.log(response.data))
+      .then((response) => console.log(response.data))
       .catch((error) => console.error(error));
   };
   const logOut = () => {

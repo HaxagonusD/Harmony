@@ -8,6 +8,7 @@ const client = new Twilio(accountSid, authToken);
 const FindOneUserByID = require("../database/Queries/FindOneUserByID");
 
 module.exports = (user) => {
+  console.log(user)
   for (const subscriber of user.subscribers) {
     // console.log("Twilio is sending message... ");
     FindOneUserByID(subscriber)
