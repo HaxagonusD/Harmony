@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "nodemon app.js",
+    "heroku-postbuild": "rm -f package-lock.json && npm install && cd client && npm install && npm run build"
   },
   "repository": {
     "type": "git",

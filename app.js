@@ -32,7 +32,7 @@ mongoose
 //app initialization
 const app = express();
 
-// app.use(express.static(path.join(__dirname, "client", "build")));
+app.use(express.static(path.join(__dirname, "client", "build")));
 
 app.locals.passport = require("./config/authentication/passportConfig");
 
@@ -87,9 +87,9 @@ app.use("/auth", authRouter);
 
 app.use("/api/users", apiUsersRouter);
 app.use("/api/subscribe", apiSubcribe);
-// app.get("/*", function (req, res) {
-//   res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-// });
+app.get("/*", function (req, res) {
+  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
 
 
 const updaterWorker = new Worker("./asyncTasks/updaterRunner.js");
