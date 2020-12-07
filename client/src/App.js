@@ -1,4 +1,3 @@
-import "./App.css";
 //components
 import CurrentTrack from "./components/Dashboard/Dashboard";
 import HomePage from "./components/HomePage/HomePage";

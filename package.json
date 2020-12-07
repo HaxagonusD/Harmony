@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon app.js",
+    "start": "node app.js",
     "heroku-postbuild": "rm -f package-lock.json && npm install && cd client && npm install && npm run build"
   },
   "repository": {
@@ -35,5 +35,8 @@
     "randomstring": "^1.1.5",
     "spotify-web-api-node": "^5.0.0",
     "twilio": "^3.52.0"
+  },
+  "engines": {
+    "node": "14.15.1"
   }
 }

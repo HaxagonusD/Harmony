@@ -104,7 +104,7 @@ updaterWorker.on("error", (error) => {
 //*Solution: Run it as another server or make a childprocess or a cluster or a worker or some other solution that doesn't ax the server
 
 //listening at port 5000
-app.set("port", process.env.PORT || 5000);
+app.set("port", process.env.PORT );
 const server = app.listen(app.get("port"), () => {
   console.log(`Express running → PORT ${server.address().port}`);
 });
