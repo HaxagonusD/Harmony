@@ -12,7 +12,7 @@ const Login = () => {
       withCredentials: true,
     });
     instance
-      .get(`http://localhost:5000/auth/isloggedin`)
+      .get(`/auth/isloggedin`)
       .then(({ data }) => {
         if (data !== null) {
           history.push(`profile/${data.id}`);
@@ -33,7 +33,7 @@ const Login = () => {
         Sign up to this app and let your friends know about the awesome music
         you are listening to
       </div>
-      <a className="register" href="http://localhost:5000/auth/spotify">
+      <a className="register" href="/auth/spotify">
         Sign up
       </a>
       {/* <a className="login" href="http://localhost:5000/auth/spotify">
