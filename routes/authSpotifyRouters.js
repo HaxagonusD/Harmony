@@ -37,13 +37,23 @@ module.exports = function (passport) {
   router.get(
     "/spotify/callback",
     passport.authenticate("spotify", {
-      failureRedirect: `${process.env.HEROKU_URL}404`,
+      failureRedirect: `${
+        process.env.NODE_ENV === "development"
+          ? process.env.CLIENT_URL
+          : process.env.HEROKU_URL
+      }404`,
       // successRedirect: `${process.env.CLIENT_URL}/profile/${req.user.id}`
     }),
     (req, res) => {
       //sucessfull
       //redirect the to the client url
-      res.redirect(`${process.env.HEROKU_URL}profile/${req.user.id}`);
+      res.redirect(
+        `${
+          process.env.NODE_ENV === "development"
+            ? process.env.CLIENT_URL
+            : process.env.HEROKU_URL
+        }profile/${req.user.id}`
+      );
     }
   );
 

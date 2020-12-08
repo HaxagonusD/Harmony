@@ -12,13 +12,18 @@ const Login = () => {
       withCredentials: true,
     });
     instance
-      .get(`/auth/isloggedin`)
+      .get(
+        `${
+          process.env.NODE_ENV === "development" ? "htpp://localhost:5000" : ""
+        }/auth/isloggedin`
+      )
       .then(({ data }) => {
         if (data !== null) {
           history.push(`profile/${data.id}`);
         }
       })
       .catch((error) => console.error(error));
+    // console.log(process.env.NODE_ENV)
   }, [history]);
 
   return (
@@ -33,9 +38,17 @@ const Login = () => {
         Sign up to this app and let your friends know about the awesome music
         you are listening to
       </div>
-      <a className="register" href="/auth/spotify">
+      <a
+        className="register"
+        href={
+          process.env.NODE_ENV === "development"
+            ? "http://localhost:5000/auth/spotify"
+            : "/auth/spotify"
+        }
+      >
         Sign up
       </a>
+
       {/* <a className="login" href="http://localhost:5000/auth/spotify">
         Log in with Spotify
       </a> */}
