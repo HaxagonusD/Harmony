@@ -32,7 +32,10 @@ mongoose
 //app initialization
 const app = express();
 
+
 app.use(express.static(path.join(__dirname, "client", "build")));
+
+
 
 app.locals.passport = require("./config/authentication/passportConfig");
 
