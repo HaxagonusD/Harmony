@@ -3,7 +3,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100&display=swap");
 .CurrentTrack {
-  background-color: #fdfcfc;
+  background-color: #FDFCFC;
   height: 100vh;
   display: -ms-grid;
   display: grid;
@@ -45,13 +45,37 @@
 }
 
 .CurrentTrack .currentlyPlaying .info .name {
-  color: #FDFCFC;
+  color: #fdfcfc;
   font-size: 64px;
 }
 
 .CurrentTrack .currentlyPlaying .info .artist {
-  color: #FDFCFC;
+  color: #fdfcfc;
   font-size: 36px;
   margin-bottom: 72px;
+}
+
+@media only screen and (max-width: 1024px) {
+  .CurrentTrack {
+    background-color: #fdfcfc;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .CurrentTrack .currentlyPlaying .info {
+    background: white;
+  }
+  .CurrentTrack .currentlyPlaying .info .name {
+    color: black;
+    font-size: 32px;
+  }
+  .CurrentTrack .currentlyPlaying .info .artist {
+    color: black;
+    font-size: 16px;
+  }
 }
 /*# sourceMappingURL=Dashboard.css.map */
