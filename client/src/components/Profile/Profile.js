@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
-import { Link, useParams, useHistory } from "react-router-dom";
+import {  useParams, useHistory } from "react-router-dom";
+import "./styles/Profile.css"
 
 // import "../styles/Config/Config.css";
 const Profile = ({ user }) => {
@@ -32,23 +33,18 @@ const Profile = ({ user }) => {
 
   return (
     <div className="Profile">
-      <button onClick={() => subcribeToThisUser()}>Subscribe</button>
-      <div className="logoutButton">
-        <button onClick={() => logOut()}>Logout</button>
-      </div>
-      <Link to="/explore">Find more users. Explore Page</Link>
+      
       {user !== undefined ? (
         <div>
           <h1>{user.displayName}</h1>
-
-          {/* <p>Number of subscribers: {user.subscribers.length}</p> */}
         </div>
       ) : (
         "Loading..."
       )}
-      {/* <h1>Name : {user.displayName}</h1> */}
-      {/* <h1>id: {user.id}</h1> */}
-      {/* <p>{user.subcribers.length === 0 ? "No subscriber": user.subcribers.length}</p> */}
+      <button onClick={() => subcribeToThisUser()}>Subscribe</button>
+      <div className="logoutButton">
+        <button onClick={() => logOut()}>Logout</button>
+      </div>
     </div>
   );
 };
