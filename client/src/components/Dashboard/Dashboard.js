@@ -15,6 +15,7 @@ import "./styles/Dashboard.css";
 
 const CurrentTrack = () => {
   const [user, setUser] = useState(undefined);
+  const [commentsDisplay, setCommentsDisplay] = useState(undefined);
   let { id } = useParams();
   let history = useHistory();
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1024px)" });
@@ -23,6 +24,15 @@ const CurrentTrack = () => {
   // const [isUserAuthorized, setIsUserAuthorized] = useState(
   //   urlParams.has("authorized") ? true : false
   // );
+  const getThemComments = () => {
+    const instance = axios.create({
+      withCredentials: true,
+    });
+    instance.get(`/api/comment/${id}`).then(({ data }) => {
+      console.log(data);
+      setCommentsDisplay(data);
+    });
+  };
   const getUser = useRef();
   getUser.current = () => {
     const instance = axios.create({
@@ -37,6 +47,12 @@ const CurrentTrack = () => {
           history.push("/404");
         } else {
           // console.log(data);
+          if (user !== undefined) {
+            if (user.currentTrack.songId !== data.currentTrack.songId) {
+              getThemComments();
+            }
+          }
+
           setUser(data);
         }
       })
@@ -64,7 +80,9 @@ const CurrentTrack = () => {
       ) : (
         <a href="http://localhost:5000/login">Connect your Spotify account</a>
       )} */}
-      <Link to="/explore">Find more users. Explore Page</Link>
+      <Link className="explorePage" to="/explore">
+        Find more users. Explore Page
+      </Link>
       <div className="currentlyPlaying">
         {/* {user ? <div className="listeningTo">You are listening to</div> : ""} */}
 
@@ -101,7 +119,12 @@ const CurrentTrack = () => {
           "Not listening to anything on spotify"
         )}
       </div>
-      <Profile user={user} loggedIn={user ? true : true} />
+      <Profile
+        getThemComments={getThemComments}
+        comments={[commentsDisplay, setCommentsDisplay]}
+        user={user}
+        loggedIn={user ? true : true}
+      />
     </div>
   );
 };

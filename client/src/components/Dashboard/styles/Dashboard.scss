@@ -1,14 +1,16 @@
 @import "../../GlobalStyles/Constants.scss";
 
 .CurrentTrack {
-  background-color: #FDFCFC;
+  background-color: #fdfcfc;
   height: 100vh;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: repeat(6, 1fr);
   gap: 2rem;
   @include fontPlayfairDisplay;
-
+  .explorePage {
+    grid-column: span 4 / auto;
+  }
   .currentlyPlaying {
     grid-column: 1 / span 6;
     grid-row: 1 / span 6;
@@ -33,6 +35,9 @@
       }
     }
   }
+  .Profile {
+    grid-column: span 4 / auto;
+  }
 }
 
 @media only screen and (max-width: 1024px) {
@@ -41,7 +46,7 @@
     display: flex;
     flex-direction: column;
     .currentlyPlaying {
-      
+      margin: 0;
       .info {
         background: white;
         .name {

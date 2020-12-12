@@ -32,11 +32,9 @@ mongoose
 //app initialization
 const app = express();
 
-
-app.use(express.static(path.join(__dirname, "client", "build")));
-
-
-
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "client", "build")));
+}
 app.locals.passport = require("./config/authentication/passportConfig");
 
 //logging our requests
@@ -83,6 +81,7 @@ app.use(app.locals.passport.session());
 const authRouter = require("./routes/authSpotifyRouters")(app.locals.passport);
 const apiSubcribe = require("./routes/apiSubcribe");
 const apiUsersRouter = require("./routes/apiUsersRouter");
+const apiCommentsRouter = require("./routes/apiCommentsRouter");
 //TODO add user registration
 
 //using the routes
@@ -90,10 +89,13 @@ app.use("/auth", authRouter);
 
 app.use("/api/users", apiUsersRouter);
 app.use("/api/subscribe", apiSubcribe);
-app.get("/*", function (req, res) {
-  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-});
+app.use("/api/comment", apiCommentsRouter);
 
+if (process.env.NODE_ENV === "production") {
+  app.get("/*", function (req, res) {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+  });
+}
 
 const updaterWorker = new Worker("./asyncTasks/updaterRunner.js");
 
@@ -107,7 +109,7 @@ updaterWorker.on("error", (error) => {
 //*Solution: Run it as another server or make a childprocess or a cluster or a worker or some other solution that doesn't ax the server
 
 //listening at port 5000
-app.set("port", process.env.PORT );
+app.set("port", process.env.PORT);
 const server = app.listen(app.get("port"), () => {
   console.log(`Express running → PORT ${server.address().port}`);
 });

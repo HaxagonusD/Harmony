@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 //!.count is deprecated. Make your own mongoose-simple-random library
 const mongooseRandom = require("mongoose-simple-random");
 const { Schema } = mongoose;
+
 const User = new Schema({
   displayName: String,
   id: String,
@@ -13,6 +14,11 @@ const User = new Schema({
   phoneNumber: { type: String, default: "" },
   subscribers: { type: [String], default: [] },
   subscriptions: { type: [String], default: [] },
+  songPosts: {
+    type: [mongoose.Types.ObjectId],
+    ref: "songpostmodel",
+    default: [],
+  },
   currentTrack: {
     songId: { type: String, default: "No song ID yet " },
     songName: { type: String, default: "No song Name yet" },
