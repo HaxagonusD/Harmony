@@ -6,21 +6,19 @@ import "./styles/Homepage.css";
 // import { Redirect } from "react-router-dom";
 // import Cookies from "js-cookie";
 const Login = () => {
-  let history = useHistory();
+  let history = useHistory(); 
   useEffect(() => {
     const instance = axios.create({
       withCredentials: true,
     });
     instance
       .get(
-        `${
-          process.env.NODE_ENV === "development" ? "htpp://localhost:5000" : ""
-        }/auth/isloggedin`
+        `/auth/isloggedin`
       )
       .then(({ data }) => {
         if (data !== null) {
           history.push(`profile/${data.id}`);
-        }
+        } 
       })
       .catch((error) => console.error(error));
     // console.log(process.env.NODE_ENV)

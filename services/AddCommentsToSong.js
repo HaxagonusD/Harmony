@@ -4,29 +4,31 @@ const moment = require("moment");
 module.exports = (commenterId, postOwnerId, content) => {
   FindOneUserByID(postOwnerId).then((postOwnerDocument) => {
     SongPostModel.findOne({
-      ownner: postOwnerId,
+      owner: postOwnerId,
       songId: postOwnerDocument.currentTrack.songId,
     })
       .exec()
-      .then((songPostDocument) => {
+      .then(async (songPostDocument) => {
+        const commenterDocument = await FindOneUserByID(commenterId);
+
         if (songPostDocument) {
           songPostDocument.comments.push({
+            displayName: commenterDocument.displayName,
             dateCreated: moment().format("MMM Do YY"), // when was this post made
             content: content, // what did the commenter say
             commenter: commenterId, //this is supposed to be commenter name
-            commentId: commenterId, // comment id
           });
           songPostDocument.save().catch((err) => console.log(err));
         } else {
           const newSongPost = new SongPostModel({
-            ownner: postOwnerId,
+            owner: postOwnerId,
             songId: postOwnerDocument.currentTrack.songId,
             comments: [
               {
-                dateCreated: moment().format("MMM Do YY"), // when was this post made
+                displayName: commenterDocument.displayName,
                 content: content, // what did the commenter say
                 commenter: commenterId, //this is supposed to be commenter name
-                commentId: commenterId, // comment id
+                dateCreated: moment().format("MMM Do YY"), // when was this post made
               },
             ],
           });

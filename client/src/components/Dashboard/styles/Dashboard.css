@@ -3,7 +3,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100&display=swap");
 .CurrentTrack {
-  background-color: #FDFCFC;
+  background-color: #fdfcfc;
   height: 100vh;
   display: -ms-grid;
   display: grid;
@@ -13,6 +13,10 @@
       grid-template-rows: repeat(6, 1fr);
   gap: 2rem;
   font-family: "Playfair Display", serif;
+}
+
+.CurrentTrack .explorePage {
+  grid-column: span 4 / auto;
 }
 
 .CurrentTrack .currentlyPlaying {
@@ -55,6 +59,10 @@
   margin-bottom: 72px;
 }
 
+.CurrentTrack .Profile {
+  grid-column: span 4 / auto;
+}
+
 @media only screen and (max-width: 1024px) {
   .CurrentTrack {
     background-color: #fdfcfc;
@@ -65,6 +73,9 @@
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
+  }
+  .CurrentTrack .currentlyPlaying {
+    margin: 0;
   }
   .CurrentTrack .currentlyPlaying .info {
     background: white;
