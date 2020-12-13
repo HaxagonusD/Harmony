@@ -1,0 +1,51 @@
+.signup-container {
+  display: flex;
+  justify-content: center;
+  background: #55ba55;
+  padding: 5px;
+  margin: 0 auto;
+  /* width: 46%; */
+  max-width: 450px;
+  border-radius: 5px;
+}
+
+.signup-form {
+  background: whitesmoke;
+  padding: 15px;
+  border-radius: 5px;
+  font-size: 1.25em;
+}
+
+.signup-label small {
+  font-style: italic;
+  font-size: 0.75em;
+}
+
+#input-phone {
+  border: 1px gray solid;
+  border-radius: 5px;
+  font-size: 0.75em;
+  padding: 5px;
+  margin-top: 10px;
+}
+
+.input-radio {
+  display: flex;
+  margin-top: 10px;
+}
+
+.signup-error {
+  color: red;
+  font-style: italic;
+}
+
+.signup-button {
+  background-color: #55ba55;
+  border: none;
+  padding: 10px;
+  font-size: 1em;
+  color: white;
+  font-weight: 600;
+  border-radius: 5px;
+  margin-top: 20px;
+}

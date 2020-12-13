@@ -22,6 +22,14 @@ module.exports = function (passport) {
     //the person is logged in so redirect them to their profile page
     res.json({ id: req.user.id });
   });
+  
+  router.get("/isverified", loggedIn, (req, res) => {
+    //the person is logged in so redirect them to their profile page
+    res.json({ 
+      id: req.user.id,
+      phoneNumber: req.user.phoneNumber 
+    });
+  });
 
   router.get(
     "/spotify",
@@ -119,17 +127,13 @@ router.post("/verify", (req, res) => {
             message: "User is verified!",
             data 
           })
-          // User(req.user.id).then(res => {
-          //   res.phoneNumber = req.query.phonenumber;
-          //   res.save().catch(err=>{
-          //     console.log(err)
-          //   })
-          // })
+          User(req.user.id).then(res => {
+            res.phoneNumber = req.query.phonenumber;
+            res.save().catch(err=>{
+              console.log(err)
+            })
+          })
         } else {
-          // res.status(400).send({
-          //   message: "Wrong phone number or code",
-          //   phonenumber: req.query.phonenumber
-          // })
           User(req.user.id).then(res => {
             res.phoneNumber = null;
             res.save().catch(err=>{
@@ -144,10 +148,6 @@ router.post("/verify", (req, res) => {
         res.redirect(`${process.env.CLIENT_URL}/signup`);
       })
     } else {
-      // res.status(400).send({
-      //   message: "Invalid phone number or code.",
-      //   phonenumber: req.query.phonenumber
-      // })
       User(req.user.id).then(res => {
         res.phoneNumber = null;
         res.save().catch(err=>{
