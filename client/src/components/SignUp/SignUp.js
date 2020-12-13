@@ -1,50 +1,33 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Redirect, useHistory } from "react-router-dom";
-import {useForm} from "react-hook-form";
-import "./SignUp.css";
+import { useForm } from "react-hook-form";
 
-function SignUp () {
+function SignUp() {
+  const [sendCode, setSendCode] = useState(true);
 
-    const [sendCode, setSendCode] = useState(true)
+  const { register, handleSubmit, errors } = useForm();
 
-    const {register, handleSubmit, errors} = useForm();
+  if (!sendCode) {
+    return <Redirect to="/verify" />;
+  }
 
-    let history = useHistory();
-    useEffect(() => {
-      const instance = axios.create({
-        withCredentials: true,
+  const onSubmit = (data) => {
+    console.log("DATA: ", data);
+    const instance = axios.create({
+      withCredentials: true,
+    });
+    instance
+      .post(
+        `/auth/signup?phonenumber=${data.phonenumber}&channel=${data.channel}`
+      )
+      .then((res) => {
+        setSendCode(false);
+      })
+      .catch((error) => {
+        console.error("ERROR: ", error);
       });
-      instance
-        .get(`http://localhost:5000/auth/isverified`)
-        .then(({ data }) => {
-          console.log("data: ", data)
-          if (data.phoneNumber == null) {
-            history.push(`profile/${data.id}`);
-          }
-        })
-        .catch((error) => console.error(error));
-    }, [history]);
-
-    if(!sendCode) {
-        return <Redirect to="/verify" />
-    }
-
-    const onSubmit = (data) => {
-        console.log("DATA: ", data)
-        const instance = axios.create({
-            withCredentials: true,
-          });
-          instance
-            .post(`/auth/signup?phonenumber=${data.phonenumber}&channel=${data.channel}`)
-            .then((res) => {
-              setSendCode(false)
-            })
-            .catch((error) => {
-              console.error("ERROR: ", error)
-            });
-    }
-
+  };
 
   return (
     <div className="signup-container">
@@ -66,6 +49,6 @@ function SignUp () {
       </div>
     </div>
   );
-};
+}
 
 export default SignUp;

@@ -1,55 +1,37 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Redirect, useHistory } from "react-router-dom";
-import {useForm} from "react-hook-form";
-import "./VerifyUser.css";
+import { useForm } from "react-hook-form";
 
 const VerifyUser = () => {
 
-    const [verify, setVerify] = useState(true)
 
-    const {register, handleSubmit, errors} = useForm();
-    let history = useHistory();
+  const { register, handleSubmit, errors } = useForm();
+  let history = useHistory();
 
-    useEffect(() => {
-      const instance = axios.create({
-        withCredentials: true,
+
+  const onSubmit = (data) => {
+    console.log("VERIFY DATA:", data);
+    const instance = axios.create({
+      withCredentials: true,
+    });
+    instance
+      .post(`/auth/verify?phonenumber=${data.phonenumber}&code=${data.code}`)
+      .then((res) => {
+        if(res === null){
+          history.push('/signup')
+        } else {
+          history.push(`/profile/${res.data.id}`)
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        history.push("/signup");
       });
-      instance
-        .get(`http://localhost:5000/auth/isverified`)
-        .then(({ data }) => {
-          if (data.phoneNumber == null) {
-            history.push(`profile/${data.id}`);
-          }
-        })
-        .catch((error) => console.error(error));
-    }, [history]);
-    
-    if(!verify) {
-        return <Redirect to="/" />
-    }
-
-
-
-    const onSubmit = (data) => {
-        console.log("VERIFY DATA:", data)
-        const instance = axios.create({
-            withCredentials: true,
-          });
-          instance
-            .post(`/auth/verify?phonenumber=${data.phonenumber}&code=${data.code}`)
-            .then((res) => { 
-              console.log("VERIFY RES:", res)
-              setVerify(false)
-            })
-            .catch((error) => {
-              console.error(error);
-              setTimeout(function(){ 
-                history.push("/signup");
-              }, 1000);           
-            });
-    }
-
+  };
+  const someErrorFunction = (data) => {
+    console.log("there was an error with submit perhaps----", data);
+  };
   return (
     <div className="verify-container">
       <div className="verify-form">
