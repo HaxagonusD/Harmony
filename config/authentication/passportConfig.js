@@ -1,4 +1,5 @@
 const passport = require("passport");
+const mongoose = require('mongoose')
 const SpotifyStrategy = require("passport-spotify").Strategy;
 const User = require("../../database/Models/UserModel");
 //why am i using the passport library instead of the passport instace i declared in app.js?
@@ -22,6 +23,7 @@ passport.use(
       // User.findOrCreate({ spotifyId: profile.id }, function(err, user) {
       //   return done(err, user);
       // });
+      console.log("gettting usuer from databse ");
       User.findOne(
         {
           id: profile.id,
@@ -29,7 +31,7 @@ passport.use(
         (err, user) => {
           if (err) {
             //if there was an error
-            console.error(err);
+            console.error("Error  in finding auser form the dat base", err);
             return done(err); //pass the error to done
           }
           if (!user) {
@@ -45,9 +47,14 @@ passport.use(
                 spotifyAccessToken: accessToken,
                 spotifyRefreshToken: refreshToken,
                 expiresIn: expires_in,
+                // songPosts: [],
               },
               (err, theMadeUser) => {
-                if (err) console.log(err); //if there was an error saving, console.log the error
+                if (err)
+                  console.log(
+                    "There was an error creating the user in the database",
+                    err
+                  ); //if there was an error saving, console.log the error
                 // console.log(`User was created: `, something);
                 return done(err, theMadeUser); // return done with the error and new user
               }
@@ -58,8 +65,9 @@ passport.use(
             user.spotifyAccessToken = accessToken;
             user.spotifyRefreshToken = refreshToken;
             user.expiresIn = expires_in;
+            user.songPosts = [];
             user.save((err) => {
-              if (err) console.log(err);
+              if (err) console.log("There was an error saving the usuer in the database",err);
               return done(err, user); // return the user
             });
           }

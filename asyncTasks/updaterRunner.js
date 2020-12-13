@@ -14,5 +14,5 @@ if (isMainThread) {
   setInterval(() => {
     console.log("updating");
     updater();
-  }, 3000);
+  }, 2000);
 }

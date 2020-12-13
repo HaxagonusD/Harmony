@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "node app.js",
+    "heroku-postbuild": "rm -f package-lock.json && npm install && cd client && npm install && npm run build"
   },
   "repository": {
     "type": "git",
@@ -26,13 +27,18 @@
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "js-cookie": "^2.2.1",
+    "moment": "^2.29.1",
     "mongoose": "^5.11.4",
     "mongoose-simple-random": "^0.4.1",
     "morgan": "^1.10.0",
     "passport": "^0.4.1",
     "passport-spotify": "^1.1.0",
     "randomstring": "^1.1.5",
+    "react-responsive": "^8.2.0",
     "spotify-web-api-node": "^5.0.0",
     "twilio": "^3.52.0"
+  },
+  "engines": {
+    "node": "14.15.1"
   }
 }

@@ -40,10 +40,15 @@ module.exports = function (passport) {
   router.get(
     "/spotify/callback",
     passport.authenticate("spotify", {
-      failureRedirect: `${process.env.CLIENT_URL}/404`,
+      failureRedirect: `${
+        process.env.NODE_ENV === "development"
+          ? process.env.CLIENT_URL
+          : process.env.HEROKU_URL
+      }404`,
       // successRedirect: `${process.env.CLIENT_URL}/profile/${req.user.id}`
     }),
     (req, res) => {
+
       if(req.user){
         console.log("==== USER: ", req.user);
         if(!req.user.phoneNumber){ 
@@ -51,9 +56,16 @@ module.exports = function (passport) {
         } else {
           //sucessfull
           //redirect the to the client url
-          res.redirect(`${process.env.CLIENT_URL}/profile/${req.user.id}`);
+          res.redirect(
+        `${
+          process.env.NODE_ENV === "development"
+            ? process.env.CLIENT_URL
+            : process.env.HEROKU_URL
+        }profile/${req.user.id}`
+      );
         }
       } 
+
     }
   );
 
@@ -64,7 +76,7 @@ module.exports = function (passport) {
   router.get("/logout", (req, res) => {
     req.logOut();
 
-    res.status(200).end()
+    res.status(200).end();
   });
   return router;
 };
@@ -160,9 +172,9 @@ router.post("/verify", (req, res) => {
 })
 
 //TODO
-//*callback from spotify -> are they or are they not registered 
-//* redirect to frontend form 
+//*callback from spotify -> are they or are they not registered
+//* redirect to frontend form
 //TODO make fronend form
 //*Submit their phone number -> verify twilio
-//TODO make routes 
+//TODO make routes
 //verify again or taken to profile -> databse phone number is registered
