@@ -10,10 +10,10 @@
 > - Users can add their phone number and subscribe to other users 
 > - Users get notifications for the songs the users they subscribe to are listening to
 > - Users can find other users by sharing links and the Explore page
+> - Users can comment on songs 
 
 ## 🔮 Future features 🔮
 ---
-> - Users will be able to comment on songs 
 > - Users whill be able to add songs to differenct playlists
 > - Songs can be added from multiple playforms 
 > - Songs will be playable from multiple platforms 
