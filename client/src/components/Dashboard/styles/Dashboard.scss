@@ -8,11 +8,14 @@
   grid-template-rows: repeat(6, 1fr);
   gap: 2rem;
   @include fontPlayfairDisplay;
+  .explorePage {
+    grid-column: span 4 / auto;
+  }
   .currentlyPlaying {
     grid-column: 1 / span 6;
     grid-row: 1 / span 6;
-    background:rgba(0,0,0,0.6);
-    a{
+    background: rgba(0, 0, 0, 0.6);
+    a {
       text-decoration: none;
     }
     .info {
@@ -22,14 +25,38 @@
       align-items: center;
       flex-direction: column-reverse;
       .name {
-        color: #FDFCFC;
+        color: #fdfcfc;
         font-size: 64px;
-        
       }
-      .artist{
-        color: #FDFCFC;
+      .artist {
+        color: #fdfcfc;
         font-size: 36px;
         margin-bottom: 72px;
+      }
+    }
+  }
+  .Profile {
+    grid-column: span 4 / auto;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .CurrentTrack {
+    background-color: #fdfcfc;
+    display: flex;
+    flex-direction: column;
+    .currentlyPlaying {
+      margin: 0;
+      .info {
+        background: white;
+        .name {
+          color: black;
+          font-size: 32px;
+        }
+        .artist {
+          color: black;
+          font-size: 16px;
+        }
       }
     }
   }

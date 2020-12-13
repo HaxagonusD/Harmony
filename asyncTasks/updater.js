@@ -73,7 +73,7 @@ module.exports = async () => {
                   });
                   
                   //This is there the twilio magic happens
-                  console.log("its happening");
+                  // console.log("its happening");
                   sendTwilioSMSToSubscribers(user);
                   user.save((error) => {
                     if (error) {
