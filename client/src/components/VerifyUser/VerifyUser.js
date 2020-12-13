@@ -64,6 +64,7 @@ const VerifyUser = () => {
           </form>
       </div>
     </div>
+    
   );
 };
 

@@ -50,7 +50,7 @@ function SignUp () {
     <div className="signup-container">
       <div className="signup-form">
         <form onSubmit={handleSubmit(onSubmit)}>
-            <label className="signup-label">Phone Number <small> Please include country code </small></label><br/>
+            <label className="signup-label">Phone Number <small>Please include country code</small></label><br/>
             <input id="input-phone" type="text" placeholder="i.e. 18001234567" name="phonenumber" ref={register({required: true, minLength: {value: 11, message: "Phone number is too short"}})}/><br/>
             {errors.phonenumber && <span className="signup-error">{errors.phonenumber.message}</span>}
             <br/>
@@ -65,6 +65,7 @@ function SignUp () {
         </form>
       </div>
     </div>
+
   );
 };
 
