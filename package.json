@@ -1,10 +1,11 @@
 {
-  "name": "apotifytwilio",
+  "name": "spotifytwilio",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "node app.js",
+    "dev": "nodemon app.js",
     "heroku-postbuild": "rm -f package-lock.json && npm install && cd client && npm install && npm run build"
   },
   "repository": {

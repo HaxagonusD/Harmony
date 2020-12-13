@@ -2,9 +2,11 @@ require("dotenv").config();
 const router = require("express").Router();
 const cors = require("cors");
 
-const client = require('twilio')(process.env.VERIFY_SID, process.env.VERIFY_AUTH);
-const User = require('../database/Queries/FindOneUserByID')
-
+const client = require("twilio")(
+  process.env.ACCOUNT_SID,
+  process.env.AUTH_TOKEN
+);
+const User = require("../database/Queries/FindOneUserByID");
 
 module.exports = function (passport) {
   //when we log in passport handles this for us with spotify
@@ -48,24 +50,28 @@ module.exports = function (passport) {
       // successRedirect: `${process.env.CLIENT_URL}/profile/${req.user.id}`
     }),
     (req, res) => {
-
-      if(req.user){
+      if (req.user) {
         console.log("==== USER: ", req.user);
-        if(!req.user.phoneNumber){ 
-          res.redirect(`${process.env.CLIENT_URL}/signup`);
+        if (!req.user.phoneNumber) {
+          res.redirect(
+            `${
+              process.env.NODE_ENV === "development"
+                ? process.env.CLIENT_URL
+                : process.env.HEROKU_URL
+            }signup`
+          );
         } else {
           //sucessfull
           //redirect the to the client url
           res.redirect(
-        `${
-          process.env.NODE_ENV === "development"
-            ? process.env.CLIENT_URL
-            : process.env.HEROKU_URL
-        }profile/${req.user.id}`
-      );
+            `${
+              process.env.NODE_ENV === "development"
+                ? process.env.CLIENT_URL
+                : process.env.HEROKU_URL
+            }profile/${req.user.id}`
+          );
         }
-      } 
-
+      }
     }
   );
 
@@ -82,94 +88,90 @@ module.exports = function (passport) {
 };
 
 router.post("/signup", (req, res) => {
-  if(req.query.phonenumber && req.query.channel){
-    client
-    .verify
-    .services(process.env.SERVICE_ID)
-    .verifications
-    .create({
-      to: `+${req.query.phonenumber}`,
-      channel: req.query.channel === 'call' ? 'call' : 'sms'
-    })
-    .then(data => {
-      res.status(200).send({
-        message: "Verification sent!",
-        phonenumber: req.query.phonenumber,
-        data
+  if (req.query.phonenumber && req.query.channel) {
+    client.verify
+      .services(process.env.SERVICE_ID)
+      .verifications.create({
+        to: `+${req.query.phonenumber}`,
+        channel: req.query.channel === "call" ? "call" : "sms",
       })
-      User(req.user.id).then(res => {
-        console.log("RES", res)
-        res.phoneNumber = req.query.phonenumber;
-        res.save().catch(err=>{
-          console.log(err)
-        })
-      })
-    })
+      .then((data) => {
+        res.status(200).send({
+          message: "Verification sent!",
+          phonenumber: req.query.phonenumber,
+          data,
+        });
+        User(req.user.id).then((res) => {
+          res.phoneNumber = req.query.phonenumber;
+          res.save().catch((err) => {
+            console.log(err);
+          });
+        });
+      });
   } else {
     res.status(400).send({
       message: "Wrong phone number",
       phonenumber: req.query.phonenumber,
-    })
+    });
   }
-})
+});
 
 router.post("/verify", (req, res) => {
-  User(req.user.id).then(user => {
-    console.log("MY USER: ", user)
-    if(req.query.phonenumber === user.phoneNumber && (req.query.code).length === 4) {
-      client
-      .verify
-      .services(process.env.SERVICE_ID)
-      .verificationChecks
-      .create({
-        to: `+${req.query.phonenumber}`,
-        code: req.query.code
-      })
-      .then(data => {
-        if(data.status === "approved") {
-          res.status(200).send({
-            message: "User is verified!",
-            data 
-          })
-          // User(req.user.id).then(res => {
-          //   res.phoneNumber = req.query.phonenumber;
-          //   res.save().catch(err=>{
-          //     console.log(err)
-          //   })
-          // })
-        } else {
-          // res.status(400).send({
-          //   message: "Wrong phone number or code",
-          //   phonenumber: req.query.phonenumber
-          // })
-          User(req.user.id).then(res => {
-            res.phoneNumber = null;
-            res.save().catch(err=>{
-              console.log(err)
-            })
-          })
-          res.redirect(`${process.env.CLIENT_URL}/signup`);
-        }
-      })
-      .catch(err =>{
-        console.log(err)
-        res.redirect(`${process.env.CLIENT_URL}/signup`);
-      })
+  User(req.user.id).then((user) => {
+    // console.log("MY USER: ", user);
+    if (req.query.code.length === 6) {
+      client.verify
+        .services(process.env.SERVICE_ID)
+        .verificationChecks.create({
+          to: `+${req.query.phonenumber}`,
+          code: req.query.code,
+        })
+        .then((data) => {
+          console.log(
+            "this is the user is supposed to be logged in---------------------",
+            req.user.id
+          );
+          if (data.status === "approved") {
+            res.json({ id: req.user.id });
+            // User(req.user.id).then(res => {
+            //   res.phoneNumber = req.query.phonenumber;
+            //   res.save().catch(err=>{
+            //     console.log(err)
+            //   })
+            // })
+          } else {
+            // res.status(400).send({
+            //   message: "Wrong phone number or code",
+            //   phonenumber: req.query.phonenumber
+            // })
+
+            user.phoneNumber = null;
+            user.save().catch((err) => {
+              console.log(err);
+            });
+
+            res.json(null);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          res.json(null);
+        });
     } else {
       // res.status(400).send({
       //   message: "Invalid phone number or code.",
       //   phonenumber: req.query.phonenumber
       // })
-      User(req.user.id).then(res => {
+      User(req.user.id).then((res) => {
         res.phoneNumber = null;
-        res.save().catch(err=>{
-          console.log(err)
-        })
-      })
-      res.redirect(`${process.env.CLIENT_URL}/signup`);
+        res.save().catch((err) => {
+          console.log(err);
+        });
+      });
+      res.json(null);
     }
-  })
-})
+  });
+});
 
 //TODO
 //*callback from spotify -> are they or are they not registered
