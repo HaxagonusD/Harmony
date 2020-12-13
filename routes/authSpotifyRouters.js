@@ -24,6 +24,14 @@ module.exports = function (passport) {
     //the person is logged in so redirect them to their profile page
     res.json({ id: req.user.id });
   });
+  
+  router.get("/isverified", loggedIn, (req, res) => {
+    //the person is logged in so redirect them to their profile page
+    res.json({ 
+      id: req.user.id,
+      phoneNumber: req.user.phoneNumber 
+    });
+  });
 
   router.get(
     "/spotify",
@@ -117,6 +125,7 @@ router.post("/signup", (req, res) => {
 });
 
 router.post("/verify", (req, res) => {
+
   User(req.user.id).then((user) => {
     // console.log("MY USER: ", user);
     if (req.query.code.length === 6) {
@@ -163,6 +172,7 @@ router.post("/verify", (req, res) => {
       //   phonenumber: req.query.phonenumber
       // })
       User(req.user.id).then((res) => {
+
         res.phoneNumber = null;
         res.save().catch((err) => {
           console.log(err);
