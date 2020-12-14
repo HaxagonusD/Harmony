@@ -13,7 +13,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  NavLink,
   Redirect,
 } from "react-router-dom";
 function App() {
@@ -21,14 +20,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <NavLink exact to="/" activeClassName="active">
-          {" "}
-          Home{" "}
-        </NavLink>
-        <NavLink to="/explore" activeClassName="active">
-          {" "}
-          Explore{" "}
-        </NavLink>
+
         <Switch>
           <Route exact path="/">
             <HomePage />

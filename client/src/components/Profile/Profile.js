@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, Link } from "react-router-dom";
 import "./styles/Profile.css";
 
 // import "../styles/Config/Config.css";
@@ -56,6 +56,9 @@ const Profile = ({ user, comments, getThemComments }) => {
     <div className="Profile">
       {user !== undefined ? (
         <div>
+          <Link className="explorePage" to="/explore">
+            Explore
+          </Link>
           <h1>{user.displayName}</h1>
 
           <button onClick={() => subcribeToThisUser()}>Subscribe</button>
@@ -73,8 +76,13 @@ const Profile = ({ user, comments, getThemComments }) => {
             commentsDisplay.comments.map((current, i) => {
               return (
                 <div key={i}>
-                  {current.dateCreated}- {current.displayName} says:{" "}
-                  <p style={{color: "blue"}}>{current.content}</p>
+                  <div className="animated-border-quote">
+                    <blockquote>
+                      <p>{current.content}</p>
+                      <cite> ~ {current.displayName}</cite>
+                    </blockquote>
+                  </div>
+                  {/* <div className="dateCreated">{current.dateCreated}</div>{" "} */}
                 </div>
               );
             })

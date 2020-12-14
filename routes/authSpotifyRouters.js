@@ -6,13 +6,13 @@ const client = require("twilio")(
   process.env.ACCOUNT_SID,
   process.env.AUTH_TOKEN
 );
-const User = require("../database/Queries/FindOneUserByID");
+const FindOneUserByID = require("../database/Queries/FindOneUserByID");
 
 module.exports = function (passport) {
   //when we log in passport handles this for us with spotify
 
   function loggedIn(req, res, next) {
-    if (req.user) {
+    if (req.user && req.user.phoneNumber) {
       next();
     } else {
       res.json(null);
@@ -109,7 +109,7 @@ router.post("/signup", (req, res) => {
           phonenumber: req.query.phonenumber,
           data,
         });
-        User(req.user.id).then((res) => {
+        FindOneUserByID(req.user.id).then((res) => {
           res.phoneNumber = req.query.phonenumber;
           res.save().catch((err) => {
             console.log(err);
@@ -126,7 +126,7 @@ router.post("/signup", (req, res) => {
 
 router.post("/verify", (req, res) => {
 
-  User(req.user.id).then((user) => {
+  FindOneUserByID(req.user.id).then((user) => {
     // console.log("MY USER: ", user);
     if (req.query.code.length === 6) {
       client.verify
@@ -171,7 +171,7 @@ router.post("/verify", (req, res) => {
       //   message: "Invalid phone number or code.",
       //   phonenumber: req.query.phonenumber
       // })
-      User(req.user.id).then((res) => {
+      FindOneUserByID(req.user.id).then((res) => {
 
         res.phoneNumber = null;
         res.save().catch((err) => {

@@ -3,7 +3,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100&display=swap");
 .CurrentTrack {
-  background-color: #fdfcfc;
+  background-color: white;
   height: 100vh;
   display: -ms-grid;
   display: grid;
@@ -43,9 +43,9 @@
       -ms-flex-align: center;
           align-items: center;
   -webkit-box-orient: vertical;
-  -webkit-box-direction: reverse;
-      -ms-flex-direction: column-reverse;
-          flex-direction: column-reverse;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .CurrentTrack .currentlyPlaying .info .name {
@@ -65,7 +65,7 @@
 
 @media only screen and (max-width: 1024px) {
   .CurrentTrack {
-    background-color: #fdfcfc;
+    background-color: #fff;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;

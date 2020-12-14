@@ -80,9 +80,7 @@ const CurrentTrack = () => {
       ) : (
         <a href="http://localhost:5000/login">Connect your Spotify account</a>
       )} */}
-      <Link className="explorePage" to="/explore">
-        Find more users. Explore Page
-      </Link>
+      
       <div className="currentlyPlaying">
         {/* {user ? <div className="listeningTo">You are listening to</div> : ""} */}
 
@@ -111,8 +109,8 @@ const CurrentTrack = () => {
               ) : (
                 ""
               )}
-              <div className="artist">{user.currentTrack.artistName}</div>
               <div className="name">{user.currentTrack.songName}</div>
+              <div className="artist">{user.currentTrack.artistName}</div>
             </div>
           </a>
         ) : (

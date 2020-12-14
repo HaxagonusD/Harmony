@@ -1,11 +1,84 @@
+$bg: #fff;
+
 .Profile {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
+  background-color: $bg;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  .animated-border-quote {
+    display: inline-block;
+    margin: 1em;
+    max-width: 100%;
+    min-width: 100%;
+    overflow: hidden;
+    blockquote {
+      background-color: $bg;
+      border: solid 2px #757575;
+      display: inline-block;
+      margin: 0;
+      padding: 1em;
+      position: relative;
+      p {
+        font-size: 2rem;
+      }
+      &:before {
+        animation: clockwise 30s infinite linear;
+        background-color: $bg;
+        bottom: 10%;
+        content: "";
+        left: 0;
+        opacity: 0.5;
+        position: absolute;
+        right: 0;
+        top: 10%;
+      }
+      &:after {
+        animation: counter 30s infinite linear;
+        background-color: $bg;
+        bottom: 10%;
+        content: "";
+        left: 0;
+        opacity: 0.5;
+        position: absolute;
+        right: 0;
+        top: 10%;
+      }
+      cite {
+        display: block;
+        font-style: italic;
+        text-align: right;
+      }
+      > * {
+        position: relative;
+        z-index: 1;
+      }
+    }
+  }
+
+  @keyframes clockwise {
+    0% {
+      transform: rotate(0);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes counter {
+    0% {
+      transform: rotate(0);
+    }
+    100% {
+      transform: rotate(-360deg);
+    }
+  }
 }
 
 @media only screen and (max-width: 1024px) {
-    
+  .explorePage {
+    width: 4rem;
+    height: 2rem;
+  }
 }
