@@ -8,7 +8,7 @@ const client = new Twilio(accountSid, authToken);
 const FindOneUserByID = require("../database/Queries/FindOneUserByID");
 
 module.exports = (user) => {
-  console.log(user)
+  console.log(user);
   for (const subscriber of user.subscribers) {
     // console.log("Twilio is sending message... ");
     FindOneUserByID(subscriber)
@@ -16,7 +16,7 @@ module.exports = (user) => {
         if (document) {
           client.messages
             .create({
-              body: `${user.displayName} is currently listening to ${user.currentTrack.songName} by ${user.currentTrack.artistName}.`,
+              body: `${user.displayName} is currently listening to ${user.currentTrack.songName} by ${user.currentTrack.artistName}. SpotifyTwilio: https://spotifytwilio.herokuapp.com/profile/${user.id} Song: https://open.spotify.com/track/${user.currentTrack.songId}`,
               to: document.phoneNumber,
               from: twilioNumber,
             })
