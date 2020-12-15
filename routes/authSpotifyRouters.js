@@ -135,12 +135,17 @@ router.post("/verify", (req, res) => {
           code: req.query.code,
         })
         .then((data) => {
-          console.log(
-            "this is the user is supposed to be logged in---------------------",
-            req.user.id
-          );
+      
           if (data.status === "approved") {
             res.json({ id: req.user.id });
+            /**
+             * {
+             *  error:  false,
+             *  whatTodo: "redirect",
+             *  redirectLocation: "***url path***"
+             *  
+             * }
+             */
             // User(req.user.id).then(res => {
             //   res.phoneNumber = req.query.phonenumber;
             //   res.save().catch(err=>{
@@ -159,11 +164,27 @@ router.post("/verify", (req, res) => {
             });
 
             res.json(null);
+            /**
+             * {
+             * Error: true,
+             * ErrorMessage: "Error finding the user"
+             * action: "redirect"
+             * redirectLocation: "login page"
+             * }
+             */
           }
         })
         .catch((err) => {
           console.log(err);
           res.json(null);
+           /**
+             * {
+             * Error: true,
+             * ErrorMessage: "The code is not approved"
+             * action: "redirect"
+             * redirectLocation: "url path"
+             * }
+             */
         });
     } else {
       // res.status(400).send({
@@ -177,6 +198,14 @@ router.post("/verify", (req, res) => {
         });
       });
       res.json(null);
+       /**
+             * {
+             * Error: true,
+             * ErrorMessage: "The code is not approved"
+             * action: "redirect"
+             * redirectLocation: "url path"
+             * }
+             */
     }
   });
 });

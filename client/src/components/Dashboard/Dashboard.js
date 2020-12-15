@@ -5,7 +5,7 @@
 
 import axios from "axios";
 import React, { useEffect, useState, useRef } from "react";
-import {  useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import Profile from "../Profile/Profile";
 import { useMediaQuery } from "react-responsive";
 // import { Redirect } from "react-router-dom";
@@ -80,7 +80,7 @@ const CurrentTrack = () => {
       ) : (
         <a href="http://localhost:5000/login">Connect your Spotify account</a>
       )} */}
-      
+
       <div className="currentlyPlaying">
         {/* {user ? <div className="listeningTo">You are listening to</div> : ""} */}
 
@@ -128,3 +128,6 @@ const CurrentTrack = () => {
 };
 
 export default CurrentTrack;
+
+
+
