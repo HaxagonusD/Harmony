@@ -91,8 +91,12 @@
   font-size: 1em;
   border: none;
   border-radius: 5px;
-  background-color: #55BA55;
+  background-color: #888888;
   color: #fff;
+}
+
+.Profile .userProfile .commentButton:hover {
+  background-color: #55BA55;
 }
 
 .Profile .animated-border-quote {
