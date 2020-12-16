@@ -15,4 +15,132 @@
       -ms-flex-align: center;
           align-items: center;
 }
+
+.explorePage .title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 1.5em;
+  margin: 10px;
+}
+
+.explorePage .title #explore {
+  color: #55BA55;
+  margin: 10px;
+  font-size: 2.5em;
+}
+
+.explorePage .peopleLinks {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  width: 100%;
+  margin: 10px;
+}
+
+.explorePage .peopleLinks .personLink {
+  background-color: #4F57CA;
+  margin: 40px;
+  padding: 10px;
+  min-width: 150px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 5px;
+}
+
+.explorePage .peopleLinks .personLink a {
+  text-decoration: none;
+  color: #fff;
+  padding: none;
+  font-size: 1.5em;
+}
+
+@media only screen and (max-width: 600px) {
+  .explorePage .title {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    font-size: 1em;
+    margin: 5px;
+  }
+  .explorePage .title h1 {
+    text-align: center;
+  }
+  .explorePage .title #explore {
+    color: #55BA55;
+    margin: 5px;
+  }
+  .explorePage .peopleLinks {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    width: 100%;
+    margin: 5px;
+  }
+  .explorePage .peopleLinks .personLink {
+    background-color: #4F57CA;
+    margin: 20px;
+    padding: 5px;
+    min-width: 150px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    border-radius: 5px;
+  }
+  .explorePage .peopleLinks .personLink a {
+    text-decoration: none;
+    color: #fff;
+    padding: none;
+    font-size: 1em;
+  }
+}
 /*# sourceMappingURL=ExplorePage.css.map */
