@@ -21,12 +21,12 @@ const ExplorePage = () => {
   return usersToDisplay !== undefined ? (
     <div className="explorePage">
       <div className="title">
-        {" "}
-        <h1>This is the explore page</h1>
+        <h1>Looking for new music?</h1>
+        <h1 id="explore">Explore!</h1>
       </div>
       <div className="peopleLinks">
         {usersToDisplay.map((user, index) => {
-          return <PersonLink key={index} user={user} />;
+          return <PersonLink className="personLink" key={index} user={user} />;
         })}
       </div>
     </div>
