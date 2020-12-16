@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const passport = require("passport");
 const mongoose = require("mongoose");
 const SpotifyStrategy = require("passport-spotify").Strategy;
