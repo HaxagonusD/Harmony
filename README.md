@@ -19,6 +19,7 @@
 > - Songs will be added from multiple platforms (SoundCloud, Apple Music) 
 > - Songs will be playable from multiple platforms 
 > - We will have an easier way to share profile links 
+> - We want to be able to play music from our app 
 
 
 ##  💻 Tech Used 💻

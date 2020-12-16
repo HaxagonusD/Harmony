@@ -6,7 +6,10 @@ const SpotifyWebApi = require("spotify-web-api-node");
 spotifyApi = new SpotifyWebApi({
   clientId: process.env.SPOTIFY_CLIENT_ID,
   clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
-  redirectUri: process.env.SPOTIFY_REDIRECT_URI,
+  redirectUri:
+    process.env.NODE_ENV === "development"
+      ? process.env.SPOTIFY_REDIRECT_URI_DEV
+      : process.env.SPOTIFY_REDIRECT_URI_PROD,
 });
 //!You repeat yourself a lot in this in this code
 //!Turn it into a function
