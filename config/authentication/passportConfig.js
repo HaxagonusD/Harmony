@@ -1,5 +1,5 @@
 const passport = require("passport");
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 const SpotifyStrategy = require("passport-spotify").Strategy;
 const User = require("../../database/Models/UserModel");
 //why am i using the passport library instead of the passport instace i declared in app.js?
@@ -17,7 +17,10 @@ passport.use(
     {
       clientID: process.env.SPOTIFY_CLIENT_ID,
       clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
-      callbackURL: process.env.SPOTIFY_REDIRECT_URI,
+      callbackURL:
+        process.env.NODE_ENV === "development"
+          ? process.env.SPOTIFY_REDIRECT_URI_DEV
+          : process.env.SPOTIFY_REDIRECT_URI_PROD,
     },
     function (accessToken, refreshToken, expires_in, profile, done) {
       // User.findOrCreate({ spotifyId: profile.id }, function(err, user) {
@@ -67,7 +70,11 @@ passport.use(
             user.expiresIn = expires_in;
             user.songPosts = [];
             user.save((err) => {
-              if (err) console.log("There was an error saving the usuer in the database",err);
+              if (err)
+                console.log(
+                  "There was an error saving the usuer in the database",
+                  err
+                );
               return done(err, user); // return the user
             });
           }
