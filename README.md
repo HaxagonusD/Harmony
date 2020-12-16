@@ -1,7 +1,7 @@
 #  🎶 Harmony
 
 
-#### [Harmony](https://www.harmonysocial.herokuapp.com/) is a platform that allows users to easily share music and start conversations about the songs they're listening to 
+#### [Harmony](https://harmonysocial.herokuapp.com/) is a platform that allows users to easily share music and start conversations about the songs they're listening to 
 
 ## Features 👀
 
