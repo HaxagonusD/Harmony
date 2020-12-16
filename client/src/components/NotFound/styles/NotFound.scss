@@ -9,18 +9,50 @@
     background-color: #FDFCFC;
     @include fontPlayfairDisplay;
     overflow: hidden;
+    .nav{
+        background-color: #55BA55;
+        grid-row: 1/2;
+        grid-column: 1/-1;
+        height: 30px;
+    }
+    #home{
+        text-decoration: none;
+        color: #fff;
+        padding: 0 10px;
+        width: 100%;
+        font-size: 1.25em;
+    }
     .message {
         grid-row: 3 / span 1;
         grid-column: 2 / span 6;
-        font-size: 5rem;
+        font-size: 2.5rem;
         display: flex;
-        align-items: center;
-        color: rgb(72, 87, 136);
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        color: #000;
     }
     img {
         width: 80%;
         height: auto;
         grid-column: 7 / span 6;
         grid-row: 2 / span 3;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .NotFound{
+        display: flex;
+        flex-direction: column;
+        overflow: visible;
+        align-items: center;
+
+        .message {
+            font-size: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #000;
+        }
     }
 }

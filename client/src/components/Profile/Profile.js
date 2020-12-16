@@ -55,21 +55,27 @@ const Profile = ({ user, comments, getThemComments }) => {
   return (
     <div className="Profile">
       {user !== undefined ? (
-        <div>
-          <Link className="explorePage" to="/explore">
-            Explore
-          </Link>
-          <h1>{user.displayName}</h1>
+        <div className="userProfile">
+          <div className="explorePage">
+            Looking for new music?
+            <Link className="exploreLink" to="/explore">
+              Explore other users
+            </Link>
+          </div>
+          <h1 className="userName">{user.displayName}</h1>
 
-          <button onClick={() => subcribeToThisUser()}>Subscribe</button>
-          <div className="logoutButton">
-            <button onClick={() => logOut()}>Logout</button>
+          <div id="buttons">
+          <button 
+            className="subscribeButton"  
+            onClick={() => subcribeToThisUser()}>Subscribe</button>
+            <button className="logoutButton" onClick={() => logOut()}>Logout</button>
           </div>
           <input
+            className="commentBox"
             onChange={getCommentValue}
-            placeholder="Comment before the user stops listening!"
+            placeholder="Comment before the user changes songs..."
           ></input>
-          <button onClick={() => addComment()}>Comment button</button>
+          <button className="commentButton" onClick={() => addComment()}>Comment</button>
           {commentsDisplay === undefined ? (
             <div>Loading... </div>
           ) : commentsDisplay !== null ? (
@@ -79,7 +85,7 @@ const Profile = ({ user, comments, getThemComments }) => {
                   <div className="animated-border-quote">
                     <blockquote>
                       <p>{current.content}</p>
-                      <cite> ~ {current.displayName}</cite>
+                      <cite><small>~ {current.displayName}</small></cite>
                     </blockquote>
                   </div>
                   {/* <div className="dateCreated">{current.dateCreated}</div>{" "} */}

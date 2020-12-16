@@ -5,14 +5,13 @@ const PersonLink = ({ user }) => {
   return (
     <div className="personLink">
       <Link to={`profile/${user.id}`}>
-        <div className="albumImage">
+        {/* <div className="albumImage">
           <img alt=""></img>
         </div>
-        
         <div className="songInfo"></div>
         <div className="userInfo">
+        </div> */}
           <div>{user.displayName}</div>
-        </div>
       </Link>
     </div>
   );

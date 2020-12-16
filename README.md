@@ -1,7 +1,7 @@
 #  🎶 Harmony
 
 
-#### [Harmony](spotifytwilio.herokuapp.com) is a platform that allows users to easily share music and start conversations about the songs they're listening to 
+#### [Harmony](https://harmonysocial.herokuapp.com/) is a platform that allows users to easily share music and start conversations about the songs they're listening to 
 
 ## Features 👀
 
@@ -19,6 +19,7 @@
 > - Songs will be added from multiple platforms (SoundCloud, Apple Music) 
 > - Songs will be playable from multiple platforms 
 > - We will have an easier way to share profile links 
+> - We want to be able to play music from our app 
 
 
 ##  💻 Tech Used 💻
