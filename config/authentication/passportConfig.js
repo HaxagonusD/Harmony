@@ -1,5 +1,6 @@
 require("dotenv").config();
-
+console.log(process.env.SPOTIFY_REDIRECT_URI_DEV);
+console.log(process.env.SPOTIFY_REDIRECT_URI_PROD);
 const passport = require("passport");
 const mongoose = require("mongoose");
 const SpotifyStrategy = require("passport-spotify").Strategy;
