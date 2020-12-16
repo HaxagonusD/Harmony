@@ -7,9 +7,72 @@ $bg: #fff;
   justify-content: center;
   align-items: center;
   width: 100%;
+  .userProfile{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+
+    .explorePage {
+      margin: 20px 0;
+      padding: 5px;
+      font-size: 2em;
+      .exploreLink {
+        text-decoration: none;
+        color: #55BA55;
+      }
+    }
+
+    .userName{
+      font-size: 2.5em;
+      margin: 5px;
+    }
+
+    #buttons {
+      padding: 5px;
+      width: 30%;
+      display: flex;
+      justify-content: space-around;
+      .subscribeButton {
+        font-size: 1.25em;
+        border: none;
+        border-radius: 5px;
+        background-color: #55BA55;
+        color: #fff;
+        padding: 5px;
+      }
+      .logoutButton {
+        font-size: 1.25em;
+        border: none;
+        border-radius: 5px;
+        background-color: #4F57CA;
+        color: #fff;
+        padding: 5px;
+      }
+    }
+    
+    .commentBox {
+      margin: 5px;
+      border: 2px solid #ececec;
+      border-radius: 5px;
+      width: 40%;
+      height: 50px;
+    }
+    
+    .commentButton {
+      margin: 5px 0 15px 0;
+      padding: 5px;
+      font-size: 1em;
+      border: none;
+      border-radius: 5px;
+      background-color: #55BA55;
+      color: #fff;
+    }
+
+  }
   .animated-border-quote {
     display: inline-block;
-    margin: 1em;
     max-width: 100%;
     min-width: 100%;
     overflow: hidden;
@@ -18,10 +81,10 @@ $bg: #fff;
       border: solid 2px #757575;
       display: inline-block;
       margin: 0;
-      padding: 1em;
+      padding: .5em;
       position: relative;
       p {
-        font-size: 2rem;
+        font-size: 1rem;
       }
       &:before {
         animation: clockwise 30s infinite linear;

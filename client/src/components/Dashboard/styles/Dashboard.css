@@ -60,7 +60,7 @@
 }
 
 .CurrentTrack .Profile {
-  grid-column: span 4 / auto;
+  grid-column: span 6 / auto;
 }
 
 @media only screen and (max-width: 1024px) {
