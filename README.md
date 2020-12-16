@@ -41,6 +41,8 @@
 > - Routing is client side and is triggered by API responses 
 > - The notification service is running on a different thread. 
 
+![Architecture picture](./SpotifyTwilio.png)
+
 # Contributors
 
 

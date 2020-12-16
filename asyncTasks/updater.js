@@ -3,7 +3,7 @@ require("dotenv").config();
 const User = require("../database/Models/UserModel");
 const sendTwilioSMSToSubscribers = require("../services/sendTwilioSMSToSubscribers");
 const SpotifyWebApi = require("spotify-web-api-node");
-spotifyApi = new SpotifyWebApi({
+const spotifyApi = new SpotifyWebApi({
   clientId: process.env.SPOTIFY_CLIENT_ID,
   clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
   redirectUri:
@@ -11,8 +11,6 @@ spotifyApi = new SpotifyWebApi({
       ? process.env.SPOTIFY_REDIRECT_URI_DEV
       : process.env.SPOTIFY_REDIRECT_URI_PROD,
 });
-//!You repeat yourself a lot in this in this code
-//!Turn it into a function
 
 const checkForDiffences = (data, user) => {
   if (data.body.item !== null && data.body.item !== undefined) {
