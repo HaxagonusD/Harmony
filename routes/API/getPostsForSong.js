@@ -1,16 +1,11 @@
-const UserModel = require("../../database/Models/UserModel");
-const songPostModel = require("../../database/Models/SongPostModel");
+const FindOneUserByID = require("../../database/Queries/FindOneUserByID");
+const FindSongPostByUserIDAndSongID = require("../../database/Queries/FindSongPostByUserIDAndSongID");
 module.exports = (req, res) => {
   const postOwner = req.params.id;
-  //   console.log('getting post for song :P')
-  UserModel.findOne({ id: postOwner })
-    .exec()
+
+    FindOneUserByID(postOwner)
     .then((userDocument) => {
-      songPostModel
-        .findOne({
-          owner: userDocument.id,
-          songId: userDocument.currentTrack.songId,
-        })
+      FindSongPostByUserIDAndSongID(postOwner, userDocument.currentTrack.songId)
         .then((document) => res.json(document));
     })
     .catch((err) => {

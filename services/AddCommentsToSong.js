@@ -1,13 +1,10 @@
 const FindOneUserByID = require("../database/Queries/FindOneUserByID");
+const FindSongPostByUserIDAndSongID = require("../database/Queries/FindSongPostByUserIDAndSongID");
 const SongPostModel = require("../database/Models/SongPostModel");
 const moment = require("moment");
 module.exports = (commenterId, postOwnerId, content) => {
-  FindOneUserByID(postOwnerId).then((postOwnerDocument) => {
-    SongPostModel.findOne({
-      owner: postOwnerId,
-      songId: postOwnerDocument.currentTrack.songId,
-    })
-      .exec()
+  FindOneUserByID(postOwnerId).then((postOwnerDocument) => { //<<< query
+    FindSongPostByUserIDAndSongID(postOwnerId, postOwnerDocument.currentTrack.songId)
       .then(async (songPostDocument) => {
         const commenterDocument = await FindOneUserByID(commenterId);
 

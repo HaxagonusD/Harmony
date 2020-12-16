@@ -7,6 +7,10 @@ const client = new Twilio(accountSid, authToken);
 
 const FindOneUserByID = require("../database/Queries/FindOneUserByID");
 
+//router layer  >>>  req, res
+//service layer (business logic) >>> internal stuff 
+//data access >>> should only thing accessing database
+
 module.exports = (user) => {
   console.log(user);
   for (const subscriber of user.subscribers) {
