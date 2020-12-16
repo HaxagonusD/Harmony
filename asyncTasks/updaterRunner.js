@@ -12,7 +12,7 @@ if (isMainThread) {
   console.log("Main tread in updaterunner");
 } else {
   setInterval(() => {
-    console.log("updating");
+
     updater();
   }, 2000);
 }
