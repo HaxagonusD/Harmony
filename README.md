@@ -1,12 +1,12 @@
-#  🎶 SpotifyTwilio _(Name is work in progress)_ 
+#  🎶 Harmony
 
 
-#### [SpotifyTwlio](spotifytwilio.herokuapp.com) is a platform that allows users to easily share music and start conversations about the songs they're listening to 
+#### [Harmony](spotifytwilio.herokuapp.com) is a platform that allows users to easily share music and start conversations about the songs they're listening to 
 
 ## Features 👀
 
 --- 
-> - Users can sign up with spotify
+> - Users can sign up with spotify (only spotify right now)
 > - Users can add their phone number and subscribe to other users 
 > - Users get notifications for the songs the users they subscribe to are listening to
 > - Users can find other users by sharing links and the Explore page
@@ -14,16 +14,17 @@
 
 ## 🔮 Future features 🔮
 ---
-> - Users whill be able to add songs to differenct playlists
-> - Songs can be added from multiple playforms 
+> - We will have better privacy and security 
+> - Users will be able to add songs to different playlists
+> - Songs will be added from multiple platforms (SoundCloud, Apple Music) 
 > - Songs will be playable from multiple platforms 
 > - We will have an easier way to share profile links 
-> - We will have better privacy and security 
+
 
 ##  💻 Tech Used 💻
 
 ---
- These are the different technologies we are incorporating (MERN)
+ These are the different technologies we are incorporating (MERN stack)
 
 > - React.js ⚛  
 > - Express.js 🚄 
@@ -34,7 +35,11 @@
 > - Passport.js 📘
 > - Axios 🥅
 
+## Architecture (Subject to change as our needs change)
 
+> - This is a single page application
+> - Routing is client side and is triggered by API responses 
+> - The notification service is running on a different thread. 
 
 # Contributors
 
