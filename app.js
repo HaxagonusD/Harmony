@@ -46,7 +46,10 @@ app.use(morgan("dev"));
 app.locals.spotifyApi = new SpotifyWebApi({
   clientId: process.env.SPOTIFY_CLIENT_ID,
   clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
-  redirectUri: process.env.SPOTIFY_REDIRECT_URI,
+  redirectUri:
+    process.env.NODE_ENV === "development"
+      ? process.env.SPOTIFY_REDIRECT_URI_DEV
+      : process.env.SPOTIFY_REDIRECT_URI_PROD,
 });
 
 //This is cors because it is dumb but apparently good
