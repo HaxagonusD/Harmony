@@ -43,14 +43,6 @@ app.use(morgan("dev"));
 //This is bascially our connection to spotify
 //I don't really want to make new conections to to spotify every time
 // I just want to have one connection and change the access token
-app.locals.spotifyApi = new SpotifyWebApi({
-  clientId: process.env.SPOTIFY_CLIENT_ID,
-  clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
-  redirectUri:
-    process.env.NODE_ENV === "development"
-      ? process.env.SPOTIFY_REDIRECT_URI_DEV
-      : process.env.SPOTIFY_REDIRECT_URI_PROD,
-});
 
 //This is cors because it is dumb but apparently good
 const corsOptions = {
