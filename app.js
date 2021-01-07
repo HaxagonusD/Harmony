@@ -8,11 +8,6 @@ const path = require("path");
 const { Worker } = require("worker_threads");
 //mongoose
 const mongoose = require("mongoose");
-//im not sure im going to use these
-
-const SpotifyWebApi = require("spotify-web-api-node");
-//TODO put this in a database
-//?How will this work for multiple users?
 
 //bringing in passport and session
 const session = require("express-session");
@@ -23,7 +18,7 @@ mongoose
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  .then((response) => console.log("Connected to data base"))
+  .then(() => console.log("Connected to data base"))
   .catch((error) => console.log(error));
 
 //passprot config
@@ -79,9 +74,8 @@ const apiUsersRouter = require("./routes/apiUsersRouter");
 const apiCommentsRouter = require("./routes/apiCommentsRouter");
 //TODO add user registration
 
-//using the routes
+//routes
 app.use("/auth", authRouter);
-
 app.use("/api/users", apiUsersRouter);
 app.use("/api/subscribe", apiSubcribe);
 app.use("/api/comment", apiCommentsRouter);
