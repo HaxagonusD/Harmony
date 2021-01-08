@@ -74,8 +74,9 @@ const apiUsersRouter = require("./routes/apiUsersRouter");
 const apiCommentsRouter = require("./routes/apiCommentsRouter");
 //TODO add user registration
 
-//routes
+//using the routes
 app.use("/auth", authRouter);
+
 app.use("/api/users", apiUsersRouter);
 app.use("/api/subscribe", apiSubcribe);
 app.use("/api/comment", apiCommentsRouter);

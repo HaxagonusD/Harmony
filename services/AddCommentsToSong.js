@@ -2,7 +2,9 @@ const FindOneUserByID = require("../database/Queries/FindOneUserByID");
 const FindSongPostByUserIDAndSongID = require("../database/Queries/FindSongPostByUserIDAndSongID");
 const SongPostModel = require("../database/Models/SongPostModel");
 const moment = require("moment");
-
+// This file has an issue
+// We have to seperate our data layer and our business layer
+// In this file .save() is being used but that is a mongoose function that needs to be abstracted away
 module.exports = (commenterId, postOwnerId, content) => {
   FindOneUserByID(postOwnerId).then((postOwnerDocument) => {
     FindSongPostByUserIDAndSongID(
@@ -10,6 +12,7 @@ module.exports = (commenterId, postOwnerId, content) => {
       postOwnerDocument.currentTrack.songId
     )
       .then(async (songPostDocument) => {
+        // MAybe there is room for async optimzation
         const commenterDocument = await FindOneUserByID(commenterId);
 
         if (songPostDocument) {
@@ -33,7 +36,6 @@ module.exports = (commenterId, postOwnerId, content) => {
               },
             ],
           });
-          // console.log(newSongPost);
           newSongPost
             .save()
             .then((thenewone) => {
