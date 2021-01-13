@@ -30,7 +30,6 @@
     "js-cookie": "^2.2.1",
     "moment": "^2.29.1",
     "mongoose": "^5.11.4",
-    "mongoose-simple-random": "^0.4.1",
     "morgan": "^1.10.0",
     "passport": "^0.4.1",
     "passport-spotify": "^1.1.0",

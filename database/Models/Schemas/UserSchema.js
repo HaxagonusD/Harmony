@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 //!.count is deprecated. Make your own mongoose-simple-random library
-const mongooseRandom = require("mongoose-simple-random");
 const { Schema } = mongoose;
 
 const User = new Schema({
