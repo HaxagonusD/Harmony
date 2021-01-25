@@ -135,7 +135,6 @@ router.post("/verify", (req, res) => {
           code: req.query.code,
         })
         .then((data) => {
-      
           if (data.status === "approved") {
             res.json({ id: req.user.id });
             /**
@@ -143,7 +142,7 @@ router.post("/verify", (req, res) => {
              *  error:  false,
              *  whatTodo: "redirect",
              *  redirectLocation: "***url path***"
-             *  
+             *
              * }
              */
             // User(req.user.id).then(res => {
@@ -177,14 +176,14 @@ router.post("/verify", (req, res) => {
         .catch((err) => {
           console.log(err);
           res.json(null);
-           /**
-             * {
-             * Error: true,
-             * ErrorMessage: "The code is not approved"
-             * action: "redirect"
-             * redirectLocation: "url path"
-             * }
-             */
+          /**
+           * {
+           * Error: true,
+           * ErrorMessage: "The code is not approved"
+           * action: "redirect"
+           * redirectLocation: "url path"
+           * }
+           */
         });
     } else {
       // res.status(400).send({
@@ -198,14 +197,14 @@ router.post("/verify", (req, res) => {
         });
       });
       res.json(null);
-       /**
-             * {
-             * Error: true,
-             * ErrorMessage: "The code is not approved"
-             * action: "redirect"
-             * redirectLocation: "url path"
-             * }
-             */
+      /**
+       * {
+       * Error: true,
+       * ErrorMessage: "The code is not approved"
+       * action: "redirect"
+       * redirectLocation: "url path"
+       * }
+       */
     }
   });
 });

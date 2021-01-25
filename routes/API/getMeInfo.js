@@ -2,7 +2,6 @@ const FindOneUserByID = require("../../database/Queries/FindOneUserByID");
 
 //this file is handling getting the logged in user from the database and sending it to the client when they ask
 module.exports = (req, res) => {
-  //if the user is logged in
   if (req.user) {
     //find the user in the databse
     //

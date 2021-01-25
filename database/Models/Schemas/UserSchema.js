@@ -25,6 +25,5 @@ const User = new Schema({
     imgLink: { type: [String], default: [] },
   },
 });
-User.plugin(mongooseRandom);
 
 module.exports = User;
