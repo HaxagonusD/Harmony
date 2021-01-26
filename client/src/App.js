@@ -1,8 +1,8 @@
-import "./App.css";
-
-//components
+//views
 import HomePage from "./views/HomePage";
 import NotFound from "./views/NotFound";
+import Profile from "./views/Profile";
+
 import "./App.css";
 //react router
 import {
@@ -19,6 +19,9 @@ function App() {
         <Switch>
           <Route exact path="/">
             <HomePage />
+          </Route>
+          <Route path="/profile/:id">
+            <Profile />
           </Route>
           <Route path="/404">
             <NotFound />

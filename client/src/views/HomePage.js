@@ -21,7 +21,6 @@ const Homepage = () => {
   //     .catch((error) => console.error(error));
   //   // console.log(process.env.NODE_ENV)
   // }, [history]);
-  const getCurrentUser = () => {};
 
   return (
     <div className="HomePage">
@@ -45,7 +44,7 @@ const Homepage = () => {
       >
         Sign up
       </a>
-      <button onClick={async () => dispatch(await fetchLoggedInUser())}>
+      <button onClick={() => dispatch(fetchLoggedInUser())}>
         Get current User
       </button>
 

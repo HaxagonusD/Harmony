@@ -1,4 +1,5 @@
-import getLoggedInUser from "../../services/getLoggedInUser";
+import getLoggedInUser from "../../services/HarmonyAPI/getLoggedInUser";
+
 const loggedInUserLoaded = (payload) => {
   return {
     type: "users/loggedInUserLoaded",
@@ -6,10 +7,12 @@ const loggedInUserLoaded = (payload) => {
   };
 };
 
-const fetchLoggedInUser = async (dispatch, getState) => {
-  const data = await getLoggedInUser();
-  console.log(data);
-  return loggedInUserLoaded(data);
+const fetchLoggedInUser = () => {
+  return async (dispatch, getState) => {
+    const data = await getLoggedInUser();
+    console.log(data);
+    dispatch(loggedInUserLoaded(data.data));
+  };
 };
 
 const userReducer = (state = { loggedInUser: {} }, action) => {
