@@ -6,6 +6,7 @@ import { fetchLoggedInUser } from "../features/users/userReducer";
 
 const Homepage = () => {
   const dispatch = useDispatch();
+
   // let history = useHistory();
   // useEffect(() => {
   //   const instance = axios.create({
@@ -47,10 +48,6 @@ const Homepage = () => {
       <button onClick={() => dispatch(fetchLoggedInUser())}>
         Get current User
       </button>
-
-      {/* <a className="login" href="http://localhost:5000/auth/spotify">
-        Log in with Spotify
-      </a> */}
     </div>
   );
 };

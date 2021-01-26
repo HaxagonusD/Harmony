@@ -1,9 +1,10 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import { userReducer } from "./features/users/userReducer";
+import { commentsReducer } from "./features/comments/commentsReducer";
 import thunk from "redux-thunk";
 
 const store = createStore(
-  combineReducers({ users: userReducer }),
+  combineReducers({ users: userReducer, comments: commentsReducer }),
   applyMiddleware(thunk)
 );
 
