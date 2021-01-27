@@ -9,7 +9,7 @@ const store = createStore(
 );
 
 store.subscribe(() => {
-  console.log(store.getState());
+  console.log("The entire Store", store.getState());
 });
 
 export default store;

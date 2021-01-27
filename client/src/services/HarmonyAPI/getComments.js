@@ -1,10 +1,10 @@
-import axios from "axios"
-function getComments(id) {
+import axios from "axios";
+async function getComments(id) {
   const instance = axios.create({
     withCredentials: true,
   });
 
-  const { data } = await instance.get(`/api/users/${id}`);
+  const { data } = await instance.get(`/api/comment/${id}`);
 
   return data;
 }

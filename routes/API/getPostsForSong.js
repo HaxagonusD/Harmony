@@ -10,6 +10,7 @@ module.exports = (req, res) => {
         userDocument.currentTrack.songId
       ).then((document) => {
         if (document) {
+          console.log(document);
           res.json({
             error: false,
             data: document,

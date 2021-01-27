@@ -1,4 +1,4 @@
-import { getComments } from "../../services/HarmonyAPI/"
+import getComments from "../../services/HarmonyAPI/getComments";
 
 const commentsLoaded = (payload) => {
   return {
@@ -7,21 +7,17 @@ const commentsLoaded = (payload) => {
   };
 };
 
-const fetchComments = (id)=> async (dispatch, getState)=>{
+const fetchComments = (id) => async (dispatch, getState) => {
   const comments = await getComments(id);
-  
-  dispatch(commentsLoaded(comments))
-
-}
-  
-
+  dispatch(commentsLoaded(comments));
+};
 
 function commentsReducer(state = {}, action) {
   switch (action.type) {
     case "comments/commentsLoaded":
-      return {...state, action.payload }
+      return { ...state, view: action.payload.data };
     default:
       return state;
   }
 }
-export { commentsReducer };
+export { commentsReducer, fetchComments };
