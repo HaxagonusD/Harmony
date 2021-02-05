@@ -85,9 +85,6 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-const areFriends = require("./services/areFriends");
-areFriends("50snrjvaxengz6t65gt7crqj4");
-
 const updaterWorker = new Worker("./asyncTasks/updaterRunner.js");
 
 updaterWorker.on("error", (error) => {
