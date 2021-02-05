@@ -75,7 +75,6 @@ const apiCommentsRouter = require("./routes/apiCommentsRouter");
 
 //using the routes
 app.use("/auth", authRouter);
-
 app.use("/api/users", apiUsersRouter);
 app.use("/api/subscribe", apiSubcribe);
 app.use("/api/comment", apiCommentsRouter);
@@ -86,11 +85,15 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
+const areFriends = require("./services/areFriends");
+areFriends("50snrjvaxengz6t65gt7crqj4");
+
 const updaterWorker = new Worker("./asyncTasks/updaterRunner.js");
 
 updaterWorker.on("error", (error) => {
   console.error(error);
 });
+
 //This is is telling the server to constanly talk to spotify and get the the current track even when there are not client connected
 //This is not good because it slows down the server and it runs on O(n) time
 //That's a problem with millions of users
