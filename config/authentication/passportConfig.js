@@ -1,16 +1,4 @@
 require("dotenv").config();
-console.log(
-  "process.env.SPOTIFY_REDIRECT_URI_DEV-----",
-  process.env.SPOTIFY_REDIRECT_URI_DEV
-);
-console.log(
-  "process.env.SPOTIFY_REDIRECT_URI_PROD----",
-  process.env.SPOTIFY_REDIRECT_URI_PROD
-);
-console.log(
-  "process.env.SPOTIFY_REDIRECT_URI_PROD----",
-  process.env.SPOTIFY_CLIENT_ID
-);
 const passport = require("passport");
 const SpotifyStrategy = require("passport-spotify").Strategy;
 const User = require("../../database/Models/UserModel");
