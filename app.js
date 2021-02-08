@@ -8,6 +8,7 @@ const path = require("path");
 const { Worker } = require("worker_threads");
 //mongoose
 const mongoose = require("mongoose");
+const app = express();
 
 //bringing in passport and session
 const session = require("express-session");
@@ -25,7 +26,6 @@ mongoose
 //we make pasport in another file and pass it to an router that needs something from this config
 
 //app initialization
-const app = express();
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "client", "build")));

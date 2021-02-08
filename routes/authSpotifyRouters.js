@@ -1,6 +1,7 @@
 require("dotenv").config();
 const router = require("express").Router();
 const cors = require("cors");
+const isLoggedIn = require("./middleware/isLoggedIn");
 
 const client = require("twilio")(
   process.env.ACCOUNT_SID,
@@ -11,21 +12,13 @@ const FindOneUserByID = require("../database/Queries/FindOneUserByID");
 module.exports = function (passport) {
   //when we log in passport handles this for us with spotify
 
-  function loggedIn(req, res, next) {
-    if (req.user && req.user.phoneNumber) {
-      next();
-    } else {
-      res.json(null);
-    }
-  }
-
   // // router.use(cors(corsOptions));
-  router.get("/isloggedin", loggedIn, (req, res) => {
+  router.get("/isloggedin", isLoggedIn, (req, res) => {
     //the person is logged in so redirect them to their profile page
     res.json({ id: req.user.id });
   });
 
-  router.get("/isverified", loggedIn, (req, res) => {
+  router.get("/isverified", isLoggedIn, (req, res) => {
     //the person is logged in so redirect them to their profile page
     res.json({
       id: req.user.id,

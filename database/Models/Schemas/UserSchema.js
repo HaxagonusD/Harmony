@@ -22,7 +22,7 @@ const User = new Schema({
     type: [mongoose.Types.ObjectId],
     ref: "notificationmodel",
     default: [],
-  }
+  },
   currentTrack: {
     songId: { type: String, default: "No song ID yet " },
     songName: { type: String, default: "No song Name yet" },

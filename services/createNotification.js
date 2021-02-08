@@ -14,9 +14,10 @@ const createNotifcation = async (ownerId, message, type) => {
   if (savedNotification) {
     //if saving the notifcation was sucessfull add the notification to the user
     const ownerDocument = await FindOneUserByID(ownerId);
-    ownerDocument.notifications.push(savedNotification);
+    ownerDocument.notifications.push(savedNotification._id);
     const savedOwnerDocument = await ownerDocument.save();
-    return savedOwnerDocument;
+    //return the saved notification or false if there was an error
+    return savedOwnerDocument ? savedNotification : false;
   } else {
     //otherwise return false
     return false;
