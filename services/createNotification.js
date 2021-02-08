@@ -8,6 +8,7 @@ const createNotifcation = async (ownerId, message, type) => {
     message,
     type,
   });
+
   //save the notification
   const savedNotification = await notificationDocument.save();
   if (savedNotification) {
