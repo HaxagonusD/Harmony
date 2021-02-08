@@ -1,6 +1,6 @@
 function isLoggedIn(req, res, next) {
   if (req.user && req.user.phoneNumber) {
-    next();
+    next(req, res);
   } else {
     res.json({
       error: true,
