@@ -2,7 +2,6 @@ require("dotenv").config();
 const cors = require("cors");
 const router = require("express").Router();
 const sendFriendRequest = require("./API/sendFriendRequest");
-const ifAreFriends = require("./middleware/ifAreFriends");
 const isLoggedIn = require("./middleware/isLoggedIn");
 
 const corsOptions = {
@@ -12,6 +11,6 @@ const corsOptions = {
 
 router.use(cors(corsOptions));
 
-router.post("/:id", isLoggedIn, ifAreFriends, sendFriendRequest);
+router.post("/:id", isLoggedIn, sendFriendRequest);
 
 module.exports = router;
