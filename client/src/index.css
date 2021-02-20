@@ -1,0 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.drop-shadow {
+  filter: drop-shadow(0.1em 0.1rem 0.1rem rgba(0, 0, 0, 0.877));
+}

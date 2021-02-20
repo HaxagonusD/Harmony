@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
-import { fetchLoggedInUser } from "../features/users/userReducer";
-import { fetchComments } from "../features/comments/commentsReducer";
+import { fetchLoggedInUser } from "../features/users/actions";
+import { fetchComments } from "../features/comments/actions";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Comment from "../components/Comment";
@@ -12,7 +12,7 @@ function Profile() {
   useEffect(() => {
     dispatch(fetchLoggedInUser());
     dispatch(fetchComments(id));
-  }, []);
+  }, [dispatch, id]);
 
   const loggedInUser = useSelector((state) => state.users.loggedInUser);
   const comments = useSelector((state) => state?.comments?.view?.comments);
@@ -23,6 +23,7 @@ function Profile() {
   const embedSpotifyPlayer =
     loggedInUser !== {} ? (
       <iframe
+        title="player"
         src={`https://open.spotify.com/embed/track/${loggedInUser?.currentTrack?.songId}`}
         width="300"
         height="80"
